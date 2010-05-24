@@ -4,6 +4,19 @@ Strongly (but not completely) based on the Google C++ Stype Guide.
 
 Everything must be in english.
 
+"using" statements are not allowed on headers, just in cpps.
+"using" namespace statements are not allowed at all. Instead of doing this:
+{{{
+using namespace std;
+}}}
+do this:
+{{{
+using std::cout;
+using std::cin;
+using std::endl;
+}}}
+It avoids using all the namespace, which can cause collision of names.
+
 = Define Guards =
 All headers MUST have a #define guard with this format:
 {{{
