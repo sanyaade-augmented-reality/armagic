@@ -1,0 +1,39 @@
+#summary Code Style Guide
+
+Strongly (but not completely) based on the Google C++ Stype Guide.
+
+Everything must be in english.
+
+= Define Guards =
+All headers MUST have a #define guard with this format:
+#ifndef ARMAGIC_<FILE>_H_
+#define ARMAGIC_<FILE>_H_
+...
+#endif
+
+= Classes =
+Should start with a capital letter and have no underscores.
+Ex:
+{{{
+class MyNewClass {...};
+}}}
+
+= Functions/Methods and Common Variables =
+Should start with lowercase letter and have no underscores.
+Ex:
+{{{
+myNewMethod();
+int myIntVariable = 0;
+}}}
+
+= Class Data Members =
+Should always have a trailing underscore
+Ex:
+{{{
+int myDataMember_;
+}}}
+
+= Namespaces =
+All lower case;
+
+For instance, that's all folks.
