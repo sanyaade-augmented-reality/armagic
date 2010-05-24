@@ -15,9 +15,18 @@ All headers MUST have a #define guard with this format:
 
 = Classes =
 Should start with a capital letter and have no underscores.
+public, protected and private keywords should not be indented and should appear in this order.
 Ex:
 {{{
-class MyNewClass {...};
+class MyNewClass {
+public:
+   
+   int myMethod();
+protected:
+   int myProtected;
+private:
+   int myInt_;
+}
 }}}
 
 = Functions/Methods and Common Variables =
@@ -36,6 +45,11 @@ int myDataMember_;
 }}}
 
 = Namespaces =
-All lower case;
+All lower case, and it's contents are not indented.
+
+= Braces =
+Braces should open beside the code and should have a space before.
+
+
 
 For instance, that's all folks.
