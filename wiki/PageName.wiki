@@ -6,10 +6,12 @@ Everything must be in english.
 
 = Define Guards =
 All headers MUST have a #define guard with this format:
+{{{
 #ifndef ARMAGIC_<FILE>_H_
 #define ARMAGIC_<FILE>_H_
 ...
 #endif
+}}}
 
 = Classes =
 Should start with a capital letter and have no underscores.
