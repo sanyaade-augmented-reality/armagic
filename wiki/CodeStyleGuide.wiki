@@ -33,10 +33,13 @@ Ex:
 {{{
 class MyNewClass {
 public:
-   
+   MyNewClass();  
    int myMethod();
+   int getMyInt();
+
 protected:
-   int myProtected;
+   int myProtected_;
+
 private:
    int myInt_;
 }
@@ -46,7 +49,7 @@ private:
 Should start with lowercase letter and have no underscores.
 Ex:
 {{{
-myNewMethod();
+void myNewMethod();
 int myIntVariable = 0;
 }}}
 
