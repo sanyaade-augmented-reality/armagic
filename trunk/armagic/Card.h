@@ -3,14 +3,19 @@
 
 class Card {
 public:
-	Card();
-	virtual ~Card();
+	enum Color {
+		COLOR_WHITE,
+		COLOR_BLACK,
+		COLOR_GREEN,
+		COLOR_BLUE,
+		COLOR_RED
+	};
 
-	// Just signaling that this is an abstract class
-	virtual void foo() = 0;
 
 protected:
-private:
+	Color color_;
+	int markerId_;
+
 };
 
 #endif
