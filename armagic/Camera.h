@@ -18,7 +18,7 @@ public:
 	Camera();
 	virtual ~Camera();
 
-
+	ARUint8* getFrame();
 
 private:
 };

@@ -8,8 +8,11 @@ public:
 	LandCard();
 	virtual ~LandCard();
 
-protected:
+	void use();
+	void reset();
+
 private:
+	bool used_;
 };
 
 #endif
