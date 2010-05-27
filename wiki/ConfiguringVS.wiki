@@ -1,6 +1,6 @@
 #summary How to configure stuff to make this work with VS2008
 
-# Download ARToolkit and ARToolkitPlus
-# Compile both
-# Create four ambient variables: ARTOOLKIT_INC ARTOOLKIT_LIB ARTOOLKITPLUS_INC ARTOOLKITPLUS_LIB with the respectives paths
-# Enjoy
+  # Download ARToolkit and ARToolkitPlus
+  # Compile both
+  # Create four ambient variables: ARTOOLKIT_INC ARTOOLKIT_LIB ARTOOLKITPLUS_INC ARTOOLKITPLUS_LIB with the respectives paths
+  # Enjoy
