@@ -1,7 +1,5 @@
 #summary Code Style Guide
 
-= Featured =
-
 Strongly (but not completely) based on the Google C++ Stype Guide.
 
 Everything must be in english.
