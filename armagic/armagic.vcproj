@@ -194,6 +194,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Exception.h"
+				>
+			</File>
+			<File
 				RelativePath=".\LandCard.h"
 				>
 			</File>
@@ -208,7 +212,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\Camera.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CreatureCard.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Exception.cpp"
 				>
 			</File>
 			<File
