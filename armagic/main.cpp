@@ -18,24 +18,27 @@
 #include <stdlib.h>
 
 #include <iostream>
+#include <string>
 
+#include "Camera.h"
+#include "Exception.h"
 
+using std::string;
 using std::cout;
 using std::endl;
 //
 // Camera configuration.
 //
 #ifdef _WIN32
-char			*vconf = "../data/WDM_camera_flipV.xml";
+/*const string*/char*	vconf = "../data/WDM_camera_flipV.xml";
 #else
 char			*vconf = "";
 #endif
 
-int             xsize, ysize;
 int             thresh = 100;
 int             count = 0;
 
-char           *cparam_name    = "../data/camera_para.dat";
+/*const string*/const char*    cparam_name    = "../data/camera_para.dat";
 ARParam         cparam;
 
 char           *patt_name      = "../data/patt.hiro";
@@ -50,8 +53,9 @@ static void   keyEvent( unsigned char key, int x, int y);
 static void   mainLoop(void);
 static void   draw( void );
 
-int main(int argc, char **argv)
-{
+track::Camera* camera;
+
+int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 	init();
 	arVideoCapStart();
@@ -59,8 +63,7 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-static void keyEvent( unsigned char key, int x, int y)
-{
+static void keyEvent( unsigned char key, int x, int y) {
 	/* quit if the ESC key is pressed */
 	if( key == 0x1b ) {
 		printf("*** %f (frame/sec)\n", (double)count/arUtilTimer());
@@ -70,18 +73,15 @@ static void keyEvent( unsigned char key, int x, int y)
 }
 
 /* main loop */
-static void mainLoop(void)
-{
+static void mainLoop() {
 	ARUint8         *dataPtr;
 	ARMarkerInfo    *marker_info;
 	int             marker_num;
 	int             j, k;
 
-	/* grab a vide frame */
-	if( (dataPtr = (ARUint8 *)arVideoGetImage()) == NULL ) {
-		arUtilSleep(2);
-		return;
-	}
+	// grab a video frame
+	dataPtr = camera->getFrame();
+
 	if( count == 0 ) arUtilTimerReset();
 	count++;
 
@@ -117,25 +117,14 @@ static void mainLoop(void)
 	argSwapBuffers();
 }
 
-static void init( void )
-{
-	ARParam  wparam;
-
-	/* open the video path */
-	if( arVideoOpen( vconf ) < 0 ) exit(0);
-	/* find the size of the window */
-	if( arVideoInqSize(&xsize, &ysize) < 0 ) exit(0);
-	printf("Image size (x,y) = (%d,%d)\n", xsize, ysize);
-
-	/* set the initial camera parameters */
-	if( arParamLoad(cparam_name, 1, &wparam) < 0 ) {
-		printf("Camera parameter load error !!\n");
-		exit(0);
+static void init( void ) {
+	try {
+		camera = new track::Camera(vconf, cparam_name);
 	}
-	arParamChangeSize( &wparam, xsize, ysize, &cparam );
-	arInitCparam( &cparam );
-	printf("*** Camera Parameter ***\n");
-	arParamDisp( &cparam );
+	catch (Exception e) {
+		cout << e.getMessage() << endl;
+		exit(-1);
+	}
 
 	if( (patt_id=arLoadPatt(patt_name)) < 0 ) {
 		printf("pattern load error !!\n");
@@ -143,7 +132,7 @@ static void init( void )
 	}
 
 	/* open the graphics window */
-	argInit( &cparam, 1.0, 0, 0, 0, 0 );
+	argInit(&camera->getCParam(), 1.0, 0, 0, 0, 0);
 }
 
 /* cleanup function called when program exits */

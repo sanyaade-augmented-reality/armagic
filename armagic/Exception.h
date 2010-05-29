@@ -9,6 +9,8 @@ public:
 	Exception(const std::string& message);
 	virtual ~Exception();
 
+	inline std::string getMessage() const { return message_; }
+
 private:
 	std::string message_;
 };
