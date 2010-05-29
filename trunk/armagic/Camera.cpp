@@ -7,7 +7,6 @@ Camera::Camera(const std::string& videoConfig, const std::string& cparamPath) {
 
 	videoConfig_ = videoConfig;
 	cparamPath_ = cparamPath;
-	const int c = 8;
 	if (arVideoOpen(const_cast<char*>(videoConfig_.c_str())) < 0)
 		throw Exception("arVideoOpen exception");
 	if (arVideoInqSize(&sizex_, &sizey_) < 0)
@@ -16,6 +15,7 @@ Camera::Camera(const std::string& videoConfig, const std::string& cparamPath) {
 		throw Exception("arParamLoad exception");
 	arParamChangeSize(&wparam, sizex_, sizey_, &cparam_);
 	arInitCparam(&cparam_);
+	arParamDisp(&cparam_);
 }
 
 Camera::~Camera() {
@@ -24,8 +24,12 @@ Camera::~Camera() {
 	argCleanup();
 }
 
-ARUint8* Camera::getFrame() {
+ARUint8* Camera::getFrame() const {
 	while ( (frame_ = (ARUint8*)arVideoGetImage()) == NULL )
 		arUtilSleep(2);
 	return frame_;
+}
+
+void Camera::capNext() const {
+	arVideoCapNext();
 }

@@ -22,7 +22,10 @@ public:
 	Camera(const std::string& videoConfig, const std::string& cparamPath);
 	virtual ~Camera();
 
-	ARUint8* getFrame();
+	ARUint8* getFrame() const;
+	void capNext() const;
+
+	inline ARParam getCParam() const { return cparam_; }
 
 private:
 	std::string videoConfig_;
@@ -30,7 +33,7 @@ private:
 	ARParam cparam_;
 	int sizex_, sizey_;
 
-	ARUint8* frame_;
+	mutable ARUint8* frame_;
 };
 
 }
