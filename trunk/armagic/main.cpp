@@ -56,6 +56,8 @@ static void   draw( void );
 track::Camera* camera;
 
 int main(int argc, char **argv) {
+	if (argv == 0)
+		throw "argv is nullptr.";
 	glutInit(&argc, argv);
 	init();
 	arVideoCapStart();
@@ -64,6 +66,7 @@ int main(int argc, char **argv) {
 }
 
 static void keyEvent( unsigned char key, int x, int y) {
+	
 	/* quit if the ESC key is pressed */
 	if( key == 0x1b ) {
 		printf("*** %f (frame/sec)\n", (double)count/arUtilTimer());
