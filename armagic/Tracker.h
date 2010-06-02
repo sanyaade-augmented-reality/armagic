@@ -1,9 +1,9 @@
 #ifndef ARMAGIC_TRACKER_H_
 #define ARMAGIC_TRACKER_H_
 
+#include "Camera.h"
 #include <ARToolKitPlus/TrackerMultiMarkerImpl.h>
 
-#include "Camera.h"
 
 namespace track {
 
@@ -15,7 +15,7 @@ public:
 	virtual ~Tracker();
 
 private:
-	Camera camera_;
+	Camera* camera_;
 };
 
 }

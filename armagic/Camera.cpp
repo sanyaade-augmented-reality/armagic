@@ -24,8 +24,8 @@ Camera::~Camera() {
 	argCleanup();
 }
 
-ARUint8* Camera::getFrame() const {
-	while ( (frame_ = (ARUint8*)arVideoGetImage()) == NULL )
+char* Camera::getFrame() const {
+	while ( (frame_ = (char*)arVideoGetImage()) == NULL )
 		arUtilSleep(2);
 	return frame_;
 }
