@@ -1,16 +1,10 @@
 #ifndef ARMAGIC_CAMERA_H_
 #define ARMAGIC_CAMERA_H_
 
-#ifdef _WIN32
-#include <windows.h>
-#endif
-
 #include <string>
-
-#include <AR/gsub.h>
-#include <AR/video.h>
-#include <AR/param.h>
-#include <AR/ar.h>
+#include <ar/ar.h>
+#include <ar/gsub.h>
+#include <ar/video.h>
 
 #include "Exception.h"
 
@@ -22,7 +16,7 @@ public:
 	Camera(const std::string& videoConfig, const std::string& cparamPath);
 	virtual ~Camera();
 
-	ARUint8* getFrame() const;
+	char* getFrame() const;
 	void capNext() const;
 
 	inline ARParam getCParam() const { return cparam_; }
@@ -33,7 +27,7 @@ private:
 	ARParam cparam_;
 	int sizex_, sizey_;
 
-	mutable ARUint8* frame_;
+	mutable char* frame_;
 };
 
 }

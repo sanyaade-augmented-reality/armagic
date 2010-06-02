@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libARd.lib libARMultid.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib"
+				AdditionalDependencies="libARd.lib libARMultid.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib ARToolKitPlusd.lib ARToolKitPlusDLLd.lib"
 				LinkIncremental="0"
 				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(ARTOOLKITPLUS_LIB)&quot;"
 				IgnoreAllDefaultLibraries="false"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;"
+				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(ARTOOLKITPLUS_INC)&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="2"
@@ -140,9 +140,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libAR.lib libARgsub.lib libARvideo.lib opengl32.lib glu32.lib glut32.lib"
+				AdditionalDependencies="libAR.lib libARgsub.lib libARvideo.lib opengl32.lib glu32.lib glut32.lib ARToolKitPlus.lib ARToolKitPlusDLL.lib"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;"
+				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(ARTOOLKITPLUS_LIB)&quot;"
 				GenerateDebugInformation="false"
 				SubSystem="0"
 				OptimizeReferences="2"
@@ -225,6 +225,10 @@
 			</File>
 			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Tracker.cpp"
 				>
 			</File>
 		</Filter>
