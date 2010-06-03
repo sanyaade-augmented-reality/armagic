@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ARTOOLKIT_INC);$(ARTOOLKITPLUS_INC)"
+				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -62,9 +62,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libARd.lib libARMultid.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib ARToolKitPlusd.lib ARToolKitPlusDLLd.lib"
+				AdditionalDependencies="libARd.lib libARMultid.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib Irrlicht.lib"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(ARTOOLKITPLUS_LIB)&quot;"
+				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(IRRLICHT_LIB)&quot;"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="0"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(ARTOOLKITPLUS_INC)&quot;"
+				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="2"
@@ -140,9 +140,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libAR.lib libARgsub.lib libARvideo.lib opengl32.lib glu32.lib glut32.lib ARToolKitPlus.lib ARToolKitPlusDLL.lib"
+				AdditionalDependencies="libAR.lib libARgsub.lib libARvideo.lib opengl32.lib glu32.lib glut32.lib Irrlicht.lib"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(ARTOOLKITPLUS_LIB)&quot;"
+				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(IRRLICHT_LIB)&quot;"
 				GenerateDebugInformation="false"
 				SubSystem="0"
 				OptimizeReferences="2"
@@ -198,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\irrAR.h"
+				>
+			</File>
+			<File
 				RelativePath=".\LandCard.h"
 				>
 			</File>
@@ -221,6 +225,10 @@
 			</File>
 			<File
 				RelativePath=".\Exception.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\irrAR.cpp"
 				>
 			</File>
 			<File

@@ -2,8 +2,6 @@
 #define ARMAGIC_TRACKER_H_
 
 #include "Camera.h"
-#include <ARToolKitPlus/TrackerMultiMarkerImpl.h>
-
 
 namespace track {
 
