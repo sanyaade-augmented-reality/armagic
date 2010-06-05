@@ -8,6 +8,14 @@
 
 class Menu {
 public:
+	enum Selection {
+		MAIN_MENU_START,
+		MAIN_MENU_SETTINGS,
+		MAIN_MENU_ABOUT,
+		MAIN_MENU_EXIT,
+		MAIN_MENU_NONE
+	};
+
 	Menu(irr::IrrlichtDevice* device, irrklang::ISoundEngine* soundEngine,
 		EventHandler* eventHandler);
 	virtual ~Menu();

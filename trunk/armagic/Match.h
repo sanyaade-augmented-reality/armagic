@@ -12,6 +12,9 @@ public:
 	Match(irr::IrrlichtDevice* device, irrklang::ISoundEngine* soundEngine,
 		EventHandler* eventHandler_);
 	~Match();
+	
+	bool isRunning() const;
+	void mainLoop();
 
 private:
 	// Vector of cards, with associated model and marker
@@ -28,6 +31,8 @@ private:
 	irrklang::ISoundEngine* soundEngine_;
 	// Event handler
 	EventHandler* eventHandler_;
+
+	void setupCards();
 };
 
 #endif
