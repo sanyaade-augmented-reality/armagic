@@ -21,6 +21,10 @@ public:
 
 private:
 	irr::video::ITexture *texMenu_;
+	irr::video::ITexture *texMenuNew_;
+	irr::video::ITexture *texMenuSett_;
+	irr::video::ITexture *texMenuAbout_;
+	irr::video::ITexture *texMenuExit_;
 };
 
 #endif
