@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;"
+				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;;&quot;$(IRRKLANG_INC)&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -62,9 +62,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libARd.lib libARMultid.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib Irrlicht.lib"
+				AdditionalDependencies="libARd.lib libARMultid.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib Irrlicht.lib irrKlang.lib"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(IRRLICHT_LIB)&quot;"
+				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(IRRLICHT_LIB)&quot;;&quot;$(IRRKLANG_LIB)&quot;"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="0"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;"
+				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;;&quot;$(IRRKLANG_INC)&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="2"
@@ -140,9 +140,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libAR.lib libARgsub.lib libARvideo.lib opengl32.lib glu32.lib glut32.lib Irrlicht.lib"
+				AdditionalDependencies="libAR.lib libARgsub.lib libARvideo.lib opengl32.lib glu32.lib glut32.lib Irrlicht.lib irrKlang.lib"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(IRRLICHT_LIB)&quot;"
+				AdditionalLibraryDirectories="&quot;$(ARTOOLKIT_LIB)&quot;;&quot;$(IRRLICHT_LIB)&quot;;&quot;$(IRRKLANG_LIB)&quot;"
 				GenerateDebugInformation="false"
 				SubSystem="0"
 				OptimizeReferences="2"
@@ -194,7 +194,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\EventHandler.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Exception.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Game.h"
 				>
 			</File>
 			<File
@@ -203,6 +211,14 @@
 			</File>
 			<File
 				RelativePath=".\LandCard.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Match.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Menu.h"
 				>
 			</File>
 			<File
@@ -224,7 +240,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\EventHandler.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Exception.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Game.cpp"
 				>
 			</File>
 			<File
@@ -233,6 +257,10 @@
 			</File>
 			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Menu.cpp"
 				>
 			</File>
 			<File

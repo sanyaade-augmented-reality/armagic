@@ -1,7 +1,7 @@
 #ifndef __IRRAR_H_INCLUDED__
 #define __IRRAR_H_INCLUDED__
 
-#include <irrlicht.h>
+#include <Irrlicht.h>
 #include <AR/video.h>
 #include <AR/param.h>
 #include <AR/ar.h>
@@ -15,6 +15,8 @@ using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
+
+namespace irrAr {
 
 #define MAX_PATTERNS 100
 #define MAX_MULTIS 20
@@ -62,5 +64,7 @@ class IARManager
 		int patt_loaded;
 		int multi_loaded;
 };
+
+}
 
 #endif

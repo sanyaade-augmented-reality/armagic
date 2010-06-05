@@ -1,5 +1,7 @@
 #include "irrAR.h"
 
+using namespace irrAr;
+
 IARManager::IARManager(IrrlichtDevice *device)
 {
 	//defaults
