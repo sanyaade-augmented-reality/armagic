@@ -4,14 +4,16 @@
 #include <irrlicht.h>
 #include <irrKlang.h>
 #include "EventHandler.h"
+#include "definitions.h"
 
 class Menu {
 public:
-	Menu(irr::IrrlichtDevice *device, irrklang::ISoundEngine *soundEngine,
-		EventHandler *eventHandler);
+	Menu(irr::IrrlichtDevice* device, irrklang::ISoundEngine* soundEngine,
+		EventHandler* eventHandler);
 	virtual ~Menu();
 
 	virtual int show() = 0;
+	virtual int posToSelection(const core::position2di& pos) = 0;
 
 protected:
 	irr::IrrlichtDevice* device_;
