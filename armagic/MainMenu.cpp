@@ -1,5 +1,7 @@
 #include "MainMenu.h"
+#include <iostream>
 
+using namespace std;
 
 MainMenu::MainMenu(irr::IrrlichtDevice *device,
 				   irrklang::ISoundEngine *soundEngine, EventHandler *eventHandler)
@@ -14,8 +16,29 @@ MainMenu::MainMenu(irr::IrrlichtDevice *device,
 MainMenu::~MainMenu() { }
 
 int MainMenu::posToSelection(const core::position2di& pos) {
-	return MAIN_MENU_NONE;
-}
+		if (pos.X > 620 && pos.X < 960) {
+			if (pos.Y > 120 && pos.Y < 170)
+			{
+				cout << pos.Y << " " << pos.X << endl;
+				return MAIN_MENU_START;
+			}
+			else if (pos.Y > 210 && pos.Y < 260)
+			{
+				cout << pos.Y << " " << pos.X << endl;
+				return MAIN_MENU_SETTINGS;
+			}
+			else if (pos.Y > 290 && pos.Y < 340)
+			{cout << pos.Y << " " << pos.X << endl;
+				return MAIN_MENU_ABOUT;
+
+			}
+			else if (pos.Y > 365 && pos.Y < 415)
+			{cout << pos.Y << " " << pos.X << endl;
+				return MAIN_MENU_EXIT;
+			}
+		}
+		return MAIN_MENU_NONE;
+	}
 
 int MainMenu::show() {
 	device_->getCursorControl()->setVisible(true);

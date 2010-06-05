@@ -44,6 +44,7 @@ void Game::mainLoop() {
 			case MainMenu::MAIN_MENU_ABOUT:
 				break;
 			case MainMenu::MAIN_MENU_EXIT:
+				exit(0);
 				break;
 			case MainMenu::MAIN_MENU_NONE:
 				break;

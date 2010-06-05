@@ -1,5 +1,6 @@
 /*#include "irrAR.h"
 #include <iostream>
+#include "markers.h"
 
 #define DPATH "../data/"
 
@@ -75,16 +76,43 @@ int main()
 		exit(-1);
 	}
 
-	//dwarf
+	//skeleton
 	IAnimatedMeshSceneNode* skeleton = smgr->addAnimatedMeshSceneNode(smgr->getMesh(DPATH"models/skeleton.3DS"));
 	if (skeleton) {
 		skeleton->setMaterialTexture(0,driver->getTexture(DPATH"media/skeleton.jpg"));
 		skeleton->setRotation(vector3df(0,180,0));
 		skeleton->setMaterialFlag(video::EMF_LIGHTING, false);
-		//skeleton->setAnimationSpeed(15);
+		fairy->setScale(vector3df(20,20,20));
 	}
 	else {
 		cout << "no skeleton" << endl;
+		exit(-1);
+	}
+
+	//dwarf
+	IAnimatedMeshSceneNode* dwarf = smgr->addAnimatedMeshSceneNode(smgr->getMesh(DPATH"models/dwarf.x"));
+	if (dwarf) {
+		dwarf->setMaterialTexture(0,driver->getTexture(DPATH"media/dwarf.jpg"));
+		dwarf->setRotation(vector3df(0,180,0));
+		dwarf->setMaterialFlag(video::EMF_LIGHTING, false);
+		dwarf->setAnimationSpeed(15);
+	}
+	else {
+		cout << "no dwarf" << endl;
+		exit(-1);
+	}
+
+	//dino
+	IAnimatedMeshSceneNode* dino = smgr->addAnimatedMeshSceneNode(smgr->getMesh(DPATH"models/dino.3ds"));
+	if (dino) {
+		dino->setMaterialTexture(0,driver->getTexture(DPATH"media/dino.jpg"));
+		dino->setRotation(vector3df(0,180,0));
+		dino->setMaterialFlag(video::EMF_LIGHTING, false);
+		dino->setAnimationSpeed(15);
+		fairy->setScale(vector3df(2,2,2));
+	}
+	else {
+		cout << "no dino" << endl;
 		exit(-1);
 	}
 	
@@ -99,14 +127,14 @@ int main()
 	water->setPosition(vector3df(0,-50,0));
 	water->setParent(node);
 
-	//grass
-	mesh = smgr->addHillPlaneMesh("faerieHill",dimension2d<f32>(20,20),dimension2d<u32>(3,2),0,0,dimension2d<f32>(0,0),dimension2d<f32>(10,10));
-	ISceneNode* grass = smgr->addWaterSurfaceSceneNode(mesh->getMesh(0), 3.0f, 300.0f, 30.0f);
-	grass->setMaterialTexture(0,driver->getTexture(DPATH"media/lands/green1.jpg"));
-	grass->setMaterialType(video::EMT_REFLECTION_2_LAYER);
-	grass->setMaterialType(video::EMT_LIGHTMAP_LIGHTING);
-	grass->setPosition(vector3df(0,-25,0));
-	grass->setParent(fairy);
+	////grass
+	//mesh = smgr->addHillPlaneMesh("faerieHill",dimension2d<f32>(20,20),dimension2d<u32>(3,2),0,0,dimension2d<f32>(0,0),dimension2d<f32>(10,10));
+	//ISceneNode* grass = smgr->addWaterSurfaceSceneNode(mesh->getMesh(0), 3.0f, 300.0f, 30.0f);
+	//grass->setMaterialTexture(0,driver->getTexture(DPATH"media/lands/green1.jpg"));
+	//grass->setMaterialType(video::EMT_REFLECTION_2_LAYER);
+	//grass->setMaterialType(video::EMT_LIGHTMAP_LIGHTING);
+	//grass->setPosition(vector3df(0,-25,0));
+	//grass->setParent(fairy);
 
 	//camera stuff
 	vector3df camera_pos = vector3df(0,0,0);
@@ -119,11 +147,11 @@ int main()
 	armgr->beginCamera(DPATH"ardata/camera_para.dat",DPATH"ardata/WDM_camera_flipV.xml", "-dev=/dev/video0");
 	
 	//node for the lady, attached the the hiro pattern
-	armgr->addARSceneNode(DPATH"markers/patt.hiro", node);
+	armgr->addARSceneNode(DPATH"markers/patt.hiro", dino);
 	//node for the fairy and water, attached the the sample1 pattern
-	armgr->addARSceneNode(DPATH"markers/multi/patt.c", fairy);
+	//armgr->addARSceneNode(DPATH"markers/multi/patt.c", dwarf);
 	//node for the dwarf, attached to a multi-pattern
-	//armgr->addARMultiSceneNode(DPATH"markers/patt.simple1", skeleton);
+	//armgr->addARMultiSceneNode(DPATH"markers/patt.hiro", dino);
 	//now fix our camera to display right
 	armgr->fixCamera(camera);
 
