@@ -3,14 +3,19 @@
 
 #include <string>
 
-const int NUMBER_OF_MARKERS = 4;
+const int NUMBER_OF_MARKERS = 9;
 
 namespace markers {
 enum Marker {
 	HIRO,
 	SIMPLE_1,
 	SIMPLE_2,
-	KANJI
+	KANJI,
+	multiA,
+	multiB,
+	multiC,
+	multiD,
+	multiE
 };
 
 static const std::string markerInfo[NUMBER_OF_MARKERS];
