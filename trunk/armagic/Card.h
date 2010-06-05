@@ -1,6 +1,8 @@
 #ifndef ARMAGIC_CARD_H_
 #define ARMAGIC_CARD_H_
 
+#include "MarkerInformation.h"
+
 class Card {
 public:
 	enum Color {
@@ -11,10 +13,11 @@ public:
 		COLOR_RED
 	};
 
+	inline Color getColor() { return color_; }
 
 protected:
 	Color color_;
-	int markerId_;
+	markers::Marker markerId_;
 
 };
 

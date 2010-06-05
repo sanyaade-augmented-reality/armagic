@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MarkerInformation.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Match.h"
 				>
 			</File>
@@ -257,6 +261,14 @@
 			</File>
 			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MarkerInformation.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Match.cpp"
 				>
 			</File>
 			<File
