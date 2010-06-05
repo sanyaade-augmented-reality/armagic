@@ -1,9 +1,11 @@
 #ifndef ARMAGIC_MATCH_H_
 #define ARMAGIC_MATCH_H_
 
+#include <vector>
 #include "irrAR.h"
 #include <irrKlang.h>
 #include "EventHandler.h"
+#include "Card.h"
 
 class Match {
 public:
@@ -12,6 +14,9 @@ public:
 	~Match();
 
 private:
+	// Vector of cards, with associated model and marker
+	std::vector<Card>* cards_;
+
 	// IrrAr stuff
 	irrAr::IARManager* armgr_;
 	// Irrlicht stuff
