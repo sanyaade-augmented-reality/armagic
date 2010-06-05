@@ -1,7 +1,4 @@
 #include "MainMenu.h"
-#include <iostream>
-
-using namespace std;
 
 MainMenu::MainMenu(irr::IrrlichtDevice *device,
 				   irrklang::ISoundEngine *soundEngine, EventHandler *eventHandler)
@@ -11,29 +8,26 @@ MainMenu::MainMenu(irr::IrrlichtDevice *device,
 	guienv_ = device->getGUIEnvironment();
 
 	texMenu_ = driver_->getTexture("../data/menu/menu1024x768.jpg");
+	texMenuNew_ = driver_->getTexture("../data/menu/menu_new1024x768.jpg");
+	texMenuSett_ = driver_->getTexture("../data/menu/menu_settings1024x768.jpg");
+	texMenuAbout_ = driver_->getTexture("../data/menu/menu_about1024x768.jpg");
+	texMenuExit_ = driver_->getTexture("../data/menu/menu_exit1024x768.jpg");
 }
 
 MainMenu::~MainMenu() { }
 
 int MainMenu::posToSelection(const core::position2di& pos) {
 		if (pos.X > 620 && pos.X < 960) {
-			if (pos.Y > 120 && pos.Y < 170)
-			{
-				cout << pos.Y << " " << pos.X << endl;
+			if (pos.Y > 120 && pos.Y < 170)	{
 				return MAIN_MENU_START;
 			}
-			else if (pos.Y > 210 && pos.Y < 260)
-			{
-				cout << pos.Y << " " << pos.X << endl;
+			else if (pos.Y > 210 && pos.Y < 260) {
 				return MAIN_MENU_SETTINGS;
 			}
-			else if (pos.Y > 290 && pos.Y < 340)
-			{cout << pos.Y << " " << pos.X << endl;
+			else if (pos.Y > 290 && pos.Y < 340) {
 				return MAIN_MENU_ABOUT;
-
 			}
-			else if (pos.Y > 365 && pos.Y < 415)
-			{cout << pos.Y << " " << pos.X << endl;
+			else if (pos.Y > 365 && pos.Y < 415) {
 				return MAIN_MENU_EXIT;
 			}
 		}
@@ -50,15 +44,21 @@ int MainMenu::show() {
 		video::ITexture* tex = texMenu_;
 		switch (posToSelection(eventHandler_->getMousePosition())) {
 			case MAIN_MENU_START:
+				tex = texMenuNew_;
 				break;
 			case MAIN_MENU_SETTINGS:
+				tex = texMenuSett_;
 				break;
 			case MAIN_MENU_ABOUT:
+				tex = texMenuAbout_;
 				break;
 			case MAIN_MENU_EXIT:
+				tex = texMenuExit_;
+				break;
+			default:
+				tex = texMenu_;
 				break;
 		}
-		// FIXME
 		driver_->draw2DImage(tex, core::position2di(0, 0), core::recti(0, 0, RESOLUTION_X, RESOLUTION_Y),
 			0, video::SColor(255, 255, 255, 255), true);
 		if (eventHandler_->IsMouseClicked()) {
