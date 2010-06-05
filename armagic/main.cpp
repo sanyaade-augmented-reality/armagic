@@ -1,11 +1,14 @@
 #include "irrAR.h"
+#include <iostream>
 
 #define DPATH "../data/"
 
-#define WIN_WIDTH 352
-#define WIN_HEIGHT 288
 
-IrrlichtDevice *device;
+using namespace irrAr;
+using std::cout;
+using std::endl;
+
+IrrlichtDevice* device;
 IVideoDriver* driver;
 ISceneManager* smgr;
 IARManager* armgr;
@@ -30,15 +33,15 @@ public:
 
 int main()
 {
-	bool fullscreen = false;
+	const bool fullscreen = false;
 	MyEventReceiver receiver;
 
 
-	device = createDevice( video::EDT_OPENGL, dimension2d<u32>(WIN_WIDTH, WIN_HEIGHT), 16, fullscreen, false, false, &receiver);
+	device = createDevice( video::EDT_OPENGL, dimension2d<u32>(640, 480), 32, fullscreen, false, true, &receiver);
 	driver = device->getVideoDriver();
 	smgr = device->getSceneManager();
 
-	device->setWindowCaption(L"IrrAR Demo by Nighsoft");
+	device->setWindowCaption(L"ARMagic");
 
 	//something for 3d reference
 	IAnimatedMesh* mesh = smgr->getMesh(DPATH"media/sydney.md2");
@@ -50,6 +53,10 @@ int main()
 		node->setMD2Animation(scene::EMAT_POINT);
 		node->setPosition(vector3df(0,50,0));
 		node->setScale(vector3df(2,2,2));
+	}
+	else {
+		cout << "no node" << endl;
+		exit(-1);
 	}
 
 	//fairy
@@ -63,12 +70,23 @@ int main()
 		fairy->setPosition(vector3df(0,45,0));
 		fairy->setRotation(vector3df(0,180,0));
 	}
+	else {
+		cout << "no fairy" << endl;
+		exit(-1);
+	}
 
 	//dwarf
 	IAnimatedMeshSceneNode* dwarf = smgr->addAnimatedMeshSceneNode(smgr->getMesh(DPATH"media/dwarf.x"));
-	dwarf->setRotation(vector3df(0,180,0));
-	dwarf->setMaterialFlag(video::EMF_LIGHTING, false);
-	dwarf->setAnimationSpeed(15);
+	if (dwarf) {
+		dwarf->setRotation(vector3df(0,180,0));
+		dwarf->setMaterialFlag(video::EMF_LIGHTING, false);
+		dwarf->setAnimationSpeed(15);
+	}
+	else {
+		cout << "no dwarf" << endl;
+		exit(-1);
+	}
+	
 
 	//water
 	mesh = smgr->addHillPlaneMesh("myHill", dimension2d<f32>(80,80), dimension2d<u32>(3,2), 0, 0, dimension2d<f32>(0,0), dimension2d<f32>(10,10));
@@ -78,7 +96,7 @@ int main()
 	water->setMaterialType(video::EMT_REFLECTION_2_LAYER);
 	water->setMaterialFlag(video::EMF_LIGHTING, false);
 	water->setPosition(vector3df(100,0,-50));
-	water->setParent(dwarf);
+	water->setParent(node);
 
 	//camera stuff
 	vector3df camera_pos = vector3df(0,0,0);
