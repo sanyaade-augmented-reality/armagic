@@ -10,10 +10,10 @@ using namespace gui;
 
 Game::Game() {
 	// FIXME
-	resx_ = 800;
-	resy_ = 600;
+	resx_ = 1024;
+	resy_ = 768;
 	device_ = createDevice(video::EDT_OPENGL, dimension2d<unsigned int>(resx_, resy_),
-		32, false, false, false, &receiver_);
+		32, false, false, false, &eventHandler_);
 	device_->setWindowCaption(L"ARMagic");
 	driver_ = device_->getVideoDriver();
 	smgr_ = device_->getSceneManager();
@@ -21,6 +21,8 @@ Game::Game() {
 	soundEngine_ = createIrrKlangDevice();
 
 	// Start up the menu
+	mainMenu_ = new MainMenu(device_, soundEngine_, &eventHandler_);
+	menu_ = mainMenu_;
 }
 
 Game::~Game() {
@@ -34,6 +36,19 @@ bool Game::isRunning() const {
 
 void Game::mainLoop() {
 	while (isRunning()) {
-		// DO STUFF
+		switch(menu_->show()) {
+			case MainMenu::MAIN_MENU_START:
+				break;
+			case MainMenu::MAIN_MENU_SETTINGS:
+				break;
+			case MainMenu::MAIN_MENU_ABOUT:
+				break;
+			case MainMenu::MAIN_MENU_EXIT:
+				break;
+			case MainMenu::MAIN_MENU_NONE:
+				break;
+			default:
+				break;
+		}
 	}
 }

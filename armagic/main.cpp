@@ -1,4 +1,4 @@
-#include "irrAR.h"
+/*#include "irrAR.h"
 #include <iostream>
 
 #define DPATH "../data/"
@@ -145,4 +145,12 @@ int main()
 	device->drop();
 
 	return 0;
+}
+*/
+
+#include "Game.h"
+
+int main() {
+	Game game;
+	game.mainLoop();
 }
