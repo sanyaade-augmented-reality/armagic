@@ -37,16 +37,18 @@ bool Game::isRunning() const {
 void Game::mainLoop() {
 	while (isRunning()) {
 		switch(menu_->show()) {
-			case MainMenu::MAIN_MENU_START:
+			case Menu::MAIN_MENU_START:
+				match_ = new Match(device_, soundEngine_, &eventHandler_);
+				match_->mainLoop();
 				break;
-			case MainMenu::MAIN_MENU_SETTINGS:
+			case Menu::MAIN_MENU_SETTINGS:
 				break;
-			case MainMenu::MAIN_MENU_ABOUT:
+			case Menu::MAIN_MENU_ABOUT:
 				break;
-			case MainMenu::MAIN_MENU_EXIT:
+			case Menu::MAIN_MENU_EXIT:
 				exit(0);
 				break;
-			case MainMenu::MAIN_MENU_NONE:
+			case Menu::MAIN_MENU_NONE:
 				break;
 			default:
 				break;

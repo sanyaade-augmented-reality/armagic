@@ -12,9 +12,7 @@ public:
 	void mainLoop();
 
 private:
-	bool isRunning() const;
-
-	Match* match;
+	Match* match_;
 
 	// Menu
 	Menu* menu_;
@@ -33,6 +31,8 @@ private:
 
 	// Event Receiver
 	EventHandler eventHandler_;
+
+	bool isRunning() const;
 };
 
 #endif

@@ -11,11 +11,11 @@ enum Marker {
 	SIMPLE_1,
 	SIMPLE_2,
 	KANJI,
-	multiA,
-	multiB,
-	multiC,
-	multiD,
-	multiE
+	MULTI_A,
+	MULTI_B,
+	MULTI_C,
+	MULTI_D,
+	MULTI_E
 };
 
 static const std::string markerInfo[NUMBER_OF_MARKERS];

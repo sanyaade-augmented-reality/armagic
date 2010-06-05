@@ -37,7 +37,7 @@ int MainMenu::posToSelection(const core::position2di& pos) {
 int MainMenu::show() {
 	device_->getCursorControl()->setVisible(true);
 	soundEngine_->stopAllSounds();
-	soundEngine_->play2D("../data/sounds/music/back.mp3");
+	soundEngine_->play2D("../data/sounds/music/back.mp3", true);
 
 	while (device_->run() && driver_) {
 		driver_->beginScene(true, true, video::SColor(0, 0, 0, 0));
