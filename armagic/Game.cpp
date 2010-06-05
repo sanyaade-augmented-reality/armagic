@@ -24,7 +24,7 @@ Game::Game() {
 }
 
 Game::~Game() {
-	// delete the menu
+	// delete the menu and the current match
 	device_->drop();
 }
 

@@ -214,7 +214,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MarkerInformation.h"
+				RelativePath=".\markers.h"
 				>
 			</File>
 			<File
@@ -223,6 +223,10 @@
 			</File>
 			<File
 				RelativePath=".\Menu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\models.h"
 				>
 			</File>
 			<File
@@ -264,7 +268,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MarkerInformation.cpp"
+				RelativePath=".\markers.cpp"
 				>
 			</File>
 			<File
@@ -273,6 +277,10 @@
 			</File>
 			<File
 				RelativePath=".\Menu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\models.cpp"
 				>
 			</File>
 			<File

@@ -1,5 +1,5 @@
-#ifndef ARMAGIC_MARKERINFORMATION_H_
-#define ARMAGIC_MARKERINFORMATION_H_
+#ifndef ARMAGIC_MARKERS_H_
+#define ARMAGIC_MARKERS_H_
 
 #include <string>
 
