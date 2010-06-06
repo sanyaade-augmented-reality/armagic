@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<cards value="9">
+  <!-- Creatures -->
+  <!-- Seven creatures using makers hiro, simple1, simple2, kanji,
+  A, B and C respectively.-->
+  <card type="creature" name="Dwarf">
+    <model value="../data/models/dwarf.x"/>
+    <texture value="../data/models/dwarf.jpg"/>
+    <marker value="../data/markers/patt.hiro"/>
+    <scale>
+      <x>2.5</x>
+      <y>2.5</y>
+      <z>2.5</z>
+    </scale>
+    <position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </position>
+    <colors>
+      <green>false</green>
+      <red>true</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>false</black>
+    </colors>
+    <registers>
+      <registers index="colorless" value="2"/>
+      <registers index="green" value="0"/>
+      <registers index="red" value="1"/>
+      <registers index="blue" value="0"/>
+      <registers index="white" value="0"/>
+      <registers index="black" value="0"/>
+      <registers index="power" value="2"/>
+      <registers index="toughness" value="3"/>
+    </registers>
+  </card>
+  <card type="creature" name="Faerie">
+    <model value="../data/models/faerie.md2"/>
+    <texture value="../data/models/faerie.jpg"/>
+    <marker value="../data/markers/patt.simple1"/>
+    <scale>
+      <x>2.5</x>
+      <y>2.5</y>
+      <z>2.5</z>
+    </scale>
+    <position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </position>
+    <colors>
+      <green>true</green>
+      <red>false</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>false</black>
+    </colors>
+    <registers>
+      <registers index="colorless" value="1"/>
+      <registers index="green" value="1"/>
+      <registers index="red" value="0"/>
+      <registers index="blue" value="0"/>
+      <registers index="white" value="0"/>
+      <registers index="black" value="0"/>
+      <registers index="power" value="2"/>
+      <registers index="toughness" value="2"/>
+    </registers>
+  </card>
+  <card type="creature" name="Dino">
+    <model value="../data/models/dino.md2"/>
+    <texture value="../data/models/dino.jpg"/>
+    <marker value="../data/markers/patt.simple2"/>
+    <scale>
+      <x>25</x>
+      <y>25</y>
+      <z>25</z>
+    </scale>
+    <position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </position>
+    <colors>
+      <green>false</green>
+      <red>true</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>false</black>
+    </colors>
+    <registers>
+      <registers index="colorless" value="1"/>
+      <registers index="green" value="0"/>
+      <registers index="red" value="1"/>
+      <registers index="blue" value="0"/>
+      <registers index="white" value="0"/>
+      <registers index="black" value="0"/>
+      <registers index="power" value="3"/>
+      <registers index="toughness" value="3"/>
+    </registers>
+  </card>
+  <card type="creature" name="Sydney">
+    <model value="../data/models/sydney.md2" />
+    <texture value="../data/models/sydney.jpg" />
+    <marker value="../data/markers/patt.kanji" />
+    <scale>
+      <x>2.5</x>
+      <y>2.5</y>
+      <z>2.5</z>
+    </scale>
+    <position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </position>
+    <colors>
+      <green>false</green>
+      <red>false</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>black</black>
+    </colors>
+    <registers>
+      <registers index="colorless" value="1" />
+      <registers index="green" value="0" />
+      <registers index="red" value="0" />
+      <registers index="blue" value="0" />
+      <registers index="white" value="1" />
+      <registers index="black" value="0" />
+      <registers index="power" value="1" />
+      <registers index="toughness" value="2" />
+    </registers>
+  </card>
+  <card type="creature" name="Skeleton">
+    <model value="../data/models/skeleton.3DS" />
+    <texture value="../data/models/skeleton.jpg" />
+    <marker value="../data/markers/multi/patt.a" />
+    <scale>
+      <x>20</x>
+      <y>20</y>
+      <z>20</z>
+    </scale>
+    <position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </position>
+    - <colors>
+      <green>false</green>
+      <red>false</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>true</black>
+    </colors>
+    - <registers>
+      <registers index="colorless" value="2" />
+      <registers index="green" value="0" />
+      <registers index="red" value="0" />
+      <registers index="blue" value="0" />
+      <registers index="white" value="0" />
+      <registers index="black" value="1" />
+      <registers index="power" value="2" />
+      <registers index="toughness" value="2" />
+    </registers>
+  </card>
+  <card type="creature" name="Horse">
+    <model value="../data/models/horse.md2" />
+    <texture value="../data/models/horse.pcx" />
+    <marker value="../data/markers/multi/patt.b" />
+    <scale>
+      <x>2.5</x>
+      <y>2.5</y>
+      <z>2.5</z>
+    </scale>
+    <position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </position>
+    - <colors>
+      <green>true</green>
+      <red>false</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>false</black>
+    </colors>
+    - <registers>
+      <registers index="colorless" value="2" />
+      <registers index="green" value="1" />
+      <registers index="red" value="0" />
+      <registers index="blue" value="0" />
+      <registers index="white" value="0" />
+      <registers index="black" value="0" />
+      <registers index="power" value="2" />
+      <registers index="toughness" value="3" />
+    </registers>
+  </card>
+  <card type="creature" name="Dragon">
+    <model value="../data/models/dragon.3DS" />
+    <texture value="../data/models/dragon.jpg" />
+    <marker value="../data/markers/multi/patt.c" />
+    <scale>
+      <x>15</x>
+      <y>15</y>
+      <z>15</z>
+    </scale>
+    <position>
+      <x>0</x>
+      <y>75</y>
+      <z>0</z>
+    </position>
+    - <colors>
+      <green>false</green>
+      <red>false</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>true</black>
+    </colors>
+    - <registers>
+      <registers index="colorless" value="2" />
+      <registers index="green" value="0" />
+      <registers index="red" value="0" />
+      <registers index="blue" value="0" />
+      <registers index="white" value="0" />
+      <registers index="black" value="1" />
+      <registers index="power" value="2" />
+      <registers index="toughness" value="2" />
+    </registers>
+  </card>
+  <!-- Lands -->
+  <!-- Three land cards (mountain, forest and swamp)
+  using markers D, G and F, respectively.-->
+  <card type="land" name="Moutain">
+    <model value="" />
+    <texture value="../data/lands/red1.jpg" />
+    <marker value="../data/markers/multi/patt.d" />
+    <scale>
+      <x>30</x>
+      <y>30</y>
+      <z>0</z>
+    </scale>
+    - <colors>
+      <green>false</green>
+      <red>true</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>false</black>
+    </colors>
+    - <registers>
+      <registers index="colorless" value="0" />
+      <registers index="green" value="0" />
+      <registers index="red" value="0" />
+      <registers index="blue" value="0" />
+      <registers index="white" value="0" />
+      <registers index="black" value="0" />
+      <registers index="power" value="0" />
+      <registers index="toughness" value="0" />
+    </registers>
+  </card>
+  <card type="land" name="Forest">
+    <model value="" />
+    <texture value="../data/lands/green1.jpg" />
+    <marker value="../data/markers/multi/patt.g" />
+    <scale>
+      <x>30</x>
+      <y>30</y>
+      <z>0</z>
+    </scale>
+    - <colors>
+      <green>true</green>
+      <red>false</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>false</black>
+    </colors>
+    - <registers>
+      <registers index="colorless" value="0" />
+      <registers index="green" value="0" />
+      <registers index="red" value="0" />
+      <registers index="blue" value="0" />
+      <registers index="white" value="0" />
+      <registers index="black" value="0" />
+      <registers index="power" value="0" />
+      <registers index="toughness" value="0" />
+    </registers>
+  </card>
+  <card type="land" name="Swamp">
+    <model value="" />
+    <texture value="../data/lands/black1.jpg" />
+    <marker value="../data/markers/multi/patt.f" />
+    <scale>
+      <x>30</x>
+      <y>30</y>
+      <z>0</z>
+    </scale>
+    - <colors>
+      <green>false</green>
+      <red>false</red>
+      <blue>false</blue>
+      <white>false</white>
+      <black>true</black>
+    </colors>
+    - <registers>
+      <registers index="colorless" value="0" />
+      <registers index="green" value="0" />
+      <registers index="red" value="0" />
+      <registers index="blue" value="0" />
+      <registers index="white" value="0" />
+      <registers index="black" value="0" />
+      <registers index="power" value="0" />
+      <registers index="toughness" value="0" />
+    </registers>
+  </card>
+</cards>
