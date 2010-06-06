@@ -22,6 +22,7 @@ Game::Game() {
 
 	// Start up the menu
 	mainMenu_ = new MainMenu(device_, soundEngine_, &eventHandler_);
+	aboutMenu_ = new AboutMenu(device_, soundEngine_, &eventHandler_);
 	menu_ = mainMenu_;
 	splash_ = new Splash(device_, soundEngine_, &eventHandler_);
 }
@@ -47,11 +48,12 @@ void Game::mainLoop() {
 			case Menu::MAIN_MENU_SETTINGS:
 				break;
 			case Menu::MAIN_MENU_ABOUT:
+				aboutMenu_->show();
 				break;
 			case Menu::MAIN_MENU_EXIT:
 				exit(0);
 				break;
-			case Menu::MAIN_MENU_NONE:
+			case Menu::MENU_NONE:
 				break;
 			default:
 				break;

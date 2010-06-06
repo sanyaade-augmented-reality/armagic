@@ -13,7 +13,7 @@ public:
 		MAIN_MENU_SETTINGS,
 		MAIN_MENU_ABOUT,
 		MAIN_MENU_EXIT,
-		MAIN_MENU_NONE
+		MENU_NONE
 	};
 
 	Menu(irr::IrrlichtDevice* device, irrklang::ISoundEngine* soundEngine,

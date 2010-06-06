@@ -4,9 +4,6 @@ MainMenu::MainMenu(irr::IrrlichtDevice *device,
 				   irrklang::ISoundEngine *soundEngine, EventHandler *eventHandler)
 				   : Menu(device, soundEngine, eventHandler)
 {
-	driver_ = device_->getVideoDriver();
-	guienv_ = device->getGUIEnvironment();
-
 	texMenu_ = driver_->getTexture("../data/menu/menu1024x768.jpg");
 	texMenuNew_ = driver_->getTexture("../data/menu/menu_new1024x768.jpg");
 	texMenuSett_ = driver_->getTexture("../data/menu/menu_settings1024x768.jpg");
@@ -31,7 +28,7 @@ int MainMenu::posToSelection(const core::position2di& pos) {
 				return MAIN_MENU_EXIT;
 			}
 		}
-		return MAIN_MENU_NONE;
+		return MENU_NONE;
 	}
 
 int MainMenu::show() {
@@ -63,7 +60,7 @@ int MainMenu::show() {
 			0, video::SColor(255, 255, 255, 255), true);
 		if (eventHandler_->IsMouseClicked()) {
 			const int res = posToSelection(eventHandler_->getMousePosition());
-			if (res != MAIN_MENU_NONE) {
+			if (res != MENU_NONE) {
 				soundEngine_->stopAllSounds();
 				soundEngine_->play2D("../data/sounds/sfx/SwordMetalSwingHit.mp3");
 				return res;
