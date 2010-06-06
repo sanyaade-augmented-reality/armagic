@@ -7,8 +7,13 @@ const int NUMBER_OF_MODELS = 2;
 
 namespace models {
 	enum Model {
+		DWARF,
+		FAERIE,
+		DINO,
 		SYDNEY,
-		FAERIE
+		SKELETON,
+		HORSE,
+		DRAGON
 	};
 	struct info	{
 		std::string modelPath, texturePath;

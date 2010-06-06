@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;;&quot;$(IRRKLANG_INC)&quot;"
+				AdditionalIncludeDirectories="&quot;$(ARTOOLKIT_INC)&quot;;&quot;$(IRRLICHT_INC)&quot;;&quot;$(IRRKLANG_INC)&quot;;&quot;$(IRRXML)&quot;;"
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
