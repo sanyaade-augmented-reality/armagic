@@ -23,6 +23,7 @@ Game::Game() {
 	// Start up the menu
 	mainMenu_ = new MainMenu(device_, soundEngine_, &eventHandler_);
 	menu_ = mainMenu_;
+	splash_ = new Splash(device_, soundEngine_, &eventHandler_);
 }
 
 Game::~Game() {
@@ -38,8 +39,10 @@ void Game::mainLoop() {
 	while (isRunning()) {
 		switch(menu_->show()) {
 			case Menu::MAIN_MENU_START:
+				splash_->show();
 				match_ = new Match(device_, soundEngine_, &eventHandler_);
 				match_->mainLoop();
+				delete match_;
 				break;
 			case Menu::MAIN_MENU_SETTINGS:
 				break;

@@ -18,8 +18,13 @@ public:
 
 private:
 	// Vector of cards, with associated model and marker
-	std::vector<Card>* cards_;
-
+	std::vector<Card> cards_;
+	// Vector of nodes
+	std::vector<irr::scene::IAnimatedMeshSceneNode*> sceneNodes_;
+	// Camera stuff
+	irr::core::vector3df camPosition_;
+	irr::core::vector3df camTarget_;
+	irr::scene::ICameraSceneNode* camera_;
 	// IrrAr stuff
 	irrAr::IARManager* armgr_;
 	// Irrlicht stuff
@@ -32,7 +37,9 @@ private:
 	// Event handler
 	EventHandler* eventHandler_;
 
-	void setupCards();
+	void loadCards();
+	void createNodes();
+	void setupCamera();
 };
 
 #endif
