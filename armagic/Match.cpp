@@ -1,4 +1,9 @@
 #include "Match.h"
+#include <irrXML.h>
+//using namespace irr; // irrXML is located 
+//using namespace io;  // in the namespace irr::io
+
+#include <string> // we use STL strings to store data
 
 using namespace irrAr;
 using namespace irrklang;
@@ -33,6 +38,10 @@ Match::~Match() {
 // O XML FICA EM ALGUM LUGAR PRE-DETERMINADO
 // LE-SE O XML E CRIA-SE UMA CARD POR CARTA
 void Match::loadCards() {
+	
+	// create the reader using one of the factory functions
+	IrrXMLReader* xml = createIrrXMLReader("../data/CardsXML.xml");
+	
 	cards_.resize(NUMBER_OF_CARDS);	//<- NUMBER OF CARDS DEVE SER LIDO DO XML, ESTA VAR DEVE *SUMIR*
 	sceneNodes_.resize(NUMBER_OF_CARDS);
 	for (int i = 0; i < NUMBER_OF_CARDS; i++) {
@@ -46,13 +55,17 @@ void Match::loadCards() {
 // TODOS NO VETOR
 void Match::createNodes() {
 	for (int i = 0; i < NUMBER_OF_CARDS; i++) {
-		sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh("../data/models/dwarf.x"));
+		sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh("../data/models/dragon.3DS"));
 		if (sceneNodes_[i]) {
-			sceneNodes_[i]->setMaterialTexture(0,driver_->getTexture("../data/media/dwarf.jpg"));
+			sceneNodes_[i]->setMaterialTexture(0,driver_->getTexture("../data/models/dragon.jpg"));
 			sceneNodes_[i]->setRotation(vector3df(0,180,0));
 			sceneNodes_[i]->setMaterialFlag(video::EMF_LIGHTING, false);
 			sceneNodes_[i]->setAnimationSpeed(15);
-			sceneNodes_[i]->setScale(vector3df(2.5,2.5,2.5));
+			sceneNodes_[i]->setScale(vector3df(15,15,15));
+			sceneNodes_[i]->setPosition(vector3df(0,75,0));
+			/*bird
+			sceneNodes_[i]->setScale(vector3df(0.1,0.1,0.1));
+			sceneNodes_[i]->setPosition(vector3df(-100,-200,-100));*/
 		}
 		// Bind with artoolkit
 		armgr_->addARSceneNode("../data/markers/patt.hiro",

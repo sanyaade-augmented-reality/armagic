@@ -13,6 +13,12 @@ MainMenu::MainMenu(irr::IrrlichtDevice *device,
 
 MainMenu::~MainMenu() { }
 
+
+/// <summary>
+/// Return the option selected by the user in the menu.
+/// </summary>
+/// <param name="pos"></param>
+/// <returns></returns>
 int MainMenu::posToSelection(const core::position2di& pos) {
 		if (pos.X > 620 && pos.X < 960) {
 			if (pos.Y > 120 && pos.Y < 170)	{
