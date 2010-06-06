@@ -72,7 +72,7 @@ void Match::loadCards() {
 	int positionY = -1;
 	int positionZ = -1;
 
-	char color[5] = "";
+	char color[6] = "";
 
 	int colorlessCost = -1;
 	int colorCost = -1;
@@ -122,42 +122,48 @@ void Match::loadCards() {
 				positionZ = xml->getAttributeValueAsInt("positionZ");
 			}
 			else if(strcmp("colors",xml->getNodeName()) == 0)
-				strcpy_s(color, _countof(color),xml->getAttributeValue("value"));
+				strcpy(color, xml->getAttributeValue("value"));
 			else if(strcmp("registers",xml->getNodeName()) == 0)
 			{
 				//<registers colorless="1" green="0" red="1" blue="0" white="0" black="0" power="1" toughness="2"/>
-				colorlessCost = xml->getAttributeValueAsInt("colorless");
+				if(IsCreature)
+				{
+					colorlessCost = xml->getAttributeValueAsInt("colorless");
 
-				if(strcmp(color,"green")==0)
-					colorCost = xml->getAttributeValueAsInt("green");
-				else if(strcmp(color,"red")==0)
-					colorCost = xml->getAttributeValueAsInt("red");
-				else if(strcmp(color,"blue")==0)
-					colorCost = xml->getAttributeValueAsInt("blue");
-				else if(strcmp(color,"white")==0)
-					colorCost = xml->getAttributeValueAsInt("white");
-				else if(strcmp(color,"black")==0)
-					colorCost = xml->getAttributeValueAsInt("black");
-				
-				power = xml->getAttributeValueAsInt("power");
-				toughness = xml->getAttributeValueAsInt("toughness");
+					if(strcmp(color,"green")==0)
+						colorCost = xml->getAttributeValueAsInt("green");
+					else if(strcmp(color,"red")==0)
+						colorCost = xml->getAttributeValueAsInt("red");
+					else if(strcmp(color,"blue")==0)
+						colorCost = xml->getAttributeValueAsInt("blue");
+					else if(strcmp(color,"white")==0)
+						colorCost = xml->getAttributeValueAsInt("white");
+					else if(strcmp(color,"black")==0)
+						colorCost = xml->getAttributeValueAsInt("black");
+
+					power = xml->getAttributeValueAsInt("power");
+					toughness = xml->getAttributeValueAsInt("toughness");
+				}
+				IsCardRead = true;
 			}
-			
+
 			if(IsCardRead)
-			if(!IsCreature)
-			{
-				//Instantiate the creatures
-				cards_[cardNumber] = new CreatureCard(name,power,toughness,colorlessCost,colorCost);
-			}
-			else
-			{
-				//Instantiate the lands
-				cards_[cardNumber] = new LandCard();
-			}
+				if(IsCreature)
+				{
+					//Instantiate the creatures
+					cards_[cardNumber] = new CreatureCard(name,power,toughness,colorlessCost,colorCost);
+					IsCardRead = false;
+				}
+				else
+				{
+					//Instantiate the lands
+					cards_[cardNumber] = new LandCard();
+					IsCardRead = false;
+				}
 				break;
 		}
 	}
-		
+
 	/*for (int i=0; i <= cardNumber; i++)
 	{
 	cout << cards_[i].getModel() << " " << cards_[i].getTexture() << " " << cards_[i].getMarker() << endl;
@@ -173,16 +179,16 @@ void Match::loadCards() {
 }
 
 //Color selectColor(const std::string& color){
-	//if (strcmp(color,"black")==0)
-	//	return COLOR_BLACK; 
-	//else if(strcmp(color,"red")==0)
-	//	return COLOR_RED;
-	//else if (strcmp(color,"green")==0)
-	//	return COLOR_GREEN;
-	//else if (strcmp(color,"white")==0)
-	//	return COLOR_WHITE;
-	//else if (strcmp(color,"blue")==0)
-	//	return COLOR_BLUE;
+//if (strcmp(color,"black")==0)
+//	return COLOR_BLACK; 
+//else if(strcmp(color,"red")==0)
+//	return COLOR_RED;
+//else if (strcmp(color,"green")==0)
+//	return COLOR_GREEN;
+//else if (strcmp(color,"white")==0)
+//	return COLOR_WHITE;
+//else if (strcmp(color,"blue")==0)
+//	return COLOR_BLUE;
 //}
 
 // PARA CADA CARTA CRIA-SE UM NODE SEGUINDO O MODELO ABAIXO
