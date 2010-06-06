@@ -3,6 +3,7 @@
 
 #include "MainMenu.h"
 #include "Match.h"
+#include "Splash.h"
 
 class Game {
 public:
@@ -17,6 +18,7 @@ private:
 	// Menu
 	Menu* menu_;
 	MainMenu* mainMenu_;
+	Splash* splash_;
 	
 	int resx_, resy_;
 

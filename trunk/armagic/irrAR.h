@@ -28,7 +28,7 @@ class IARManager
 		~IARManager();
 		
 		dimension2di beginCamera(char* cparam_filename, char* win32_vconf_filename = 0, char* unix_config_string = "-dev=/dev/video0");
-		ISceneNode* addARSceneNode(char* patt_filename, ISceneNode *initial_child = 0, s32 id = -1);
+		ISceneNode* addARSceneNode(const char* patt_filename, ISceneNode *initial_child = 0, s32 id = -1);
 		ISceneNode* addARMultiSceneNode(char* config_filename, ISceneNode *initial_child = 0, s32 id = -1);
 		ITexture* getCameraTexture();
 		int run();

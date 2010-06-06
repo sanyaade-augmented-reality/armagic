@@ -64,6 +64,8 @@ int MainMenu::show() {
 		if (eventHandler_->IsMouseClicked()) {
 			const int res = posToSelection(eventHandler_->getMousePosition());
 			if (res != MAIN_MENU_NONE) {
+				soundEngine_->stopAllSounds();
+				soundEngine_->play2D("../data/sounds/sfx/SwordMetalSwingHit.mp3");
 				return res;
 			}
 		}

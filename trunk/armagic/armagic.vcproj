@@ -238,6 +238,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Splash.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Tracker.h"
 				>
 			</File>
@@ -293,6 +297,10 @@
 			</File>
 			<File
 				RelativePath=".\models.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Splash.cpp"
 				>
 			</File>
 			<File

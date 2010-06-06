@@ -59,7 +59,7 @@ dimension2di IARManager::beginCamera(char* cparam_filename, char* win32_vconf_fi
 	return window_dimensions;
 }
 
-ISceneNode* IARManager::addARSceneNode(char* patt_filename, ISceneNode *initial_child, s32 id)
+ISceneNode* IARManager::addARSceneNode(const char* patt_filename, ISceneNode *initial_child, s32 id)
 {
 	//already at the max?
 	if(this->patt_loaded == MAX_PATTERNS) return 0;
