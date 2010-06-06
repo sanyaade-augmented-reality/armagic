@@ -18,16 +18,18 @@ public:
 
 	inline Color getColor() { return color_; }
 	inline void setColor(Color color) { color_ = color; }
-	inline markers::Marker getMarkerId() { return markerId_; }
-	inline void setMarkerId(markers::Marker id) { markerId_ = id; }
-	inline models::Model getModel() { return model_; }
-	inline void setModel(models::Model m) { model_ = m; }
-
+	inline std::string getMarker() const { return marker_; }
+	inline void setMarker(std::string val) { marker_ = val; }
+	inline std::string getModel() const { return model_; }
+	inline void setModel(std::string val) { model_ = val; }
+	inline std::string getTexture() const { return texture_; }
+	inline void setTexture(std::string val) { texture_ = val; }
 
 protected:
 	Color color_;
-	markers::Marker markerId_;
-	models::Model model_;
+	std::string marker_;
+	std::string model_;
+	std::string texture_;
 
 };
 

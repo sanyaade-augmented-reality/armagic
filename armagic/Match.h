@@ -6,6 +6,8 @@
 #include <irrKlang.h>
 #include "EventHandler.h"
 #include "Card.h"
+#include "CreatureCard.h"
+#include "LandCard.h"
 
 class Match {
 public:
@@ -18,7 +20,7 @@ public:
 
 private:
 	// Vector of cards, with associated model and marker
-	std::vector<Card> cards_;
+	std::vector<Card*> cards_;
 	// Vector of nodes
 	std::vector<irr::scene::IAnimatedMeshSceneNode*> sceneNodes_;
 	// Camera stuff
@@ -37,6 +39,7 @@ private:
 	// Event handler
 	EventHandler* eventHandler_;
 
+	//Color selectColor(const std::string& color);
 	void loadCards();
 	void createNodes();
 	void setupCamera();
