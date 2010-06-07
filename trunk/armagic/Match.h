@@ -40,8 +40,9 @@ private:
 	EventHandler* eventHandler_;
 
 	//Color selectColor(const std::string& color);
-	void loadCards();
-	void createNodes();
+	int loadCards();
+	Card::Color ReturnColorEnum(char color[6]);
+	void createNodes(const int numberOfCards);
 	void setupCamera();
 };
 
