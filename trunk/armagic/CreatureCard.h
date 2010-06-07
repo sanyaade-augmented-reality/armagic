@@ -6,32 +6,25 @@
 
 class CreatureCard : public Card {
 public:
-	CreatureCard(const std::string& name, const int attack, const int defense, const int colorlessCost, const int colorCost,
-		const int scaleX, const int scaleY, const int scaleZ, const int positionX, const int positionY, const int positionZ);
+	CreatureCard(
+		Color color, const	std::string marker, const std::string model, const std::string texture, const bool isCreature,
+		const std::string& name, const int attack, const int defense, const int colorlessCost, const int colorCost,
+		const double scaleX, const double scaleY, const double scaleZ, const double positionX, const double positionY, const double positionZ);
+	
 	virtual ~CreatureCard();
 
 	inline std::string getName() const { return name_; }
 	inline int getAttack() const { return attack_; }
 	inline int getDefense() const { return defense_; }
 	inline int getColorCost() const { return colorCost_; }
+	inline int getColorlessCost() const { return colorlessCost_; }
+
 	inline int getAttackModifier() const { return attackModifier_; }
 	inline void setAttackModifier(int val) { attackModifier_ = val; }
 	inline int getDefenseModifier() const { return defenseModifier_; }
 	inline void setDefenseModifier(int val) { defenseModifier_ = val; }
 
-	inline int getScaleX() const { return scaleX_; }
-	inline void setScaleX(int val) { scaleX_ = val; }
-	inline int getScaleY() const { return scaleY_; }
-	inline void setScaleY(int val) { scaleY_ = val; }
-	inline int getScaleZ() const { return scaleZ_; }
-	inline void setScaleZ(int val) { scaleZ_ = val; }
 
-	inline int PositionX() const { return positionX_; }
-	inline void PositionX(int val) { positionX_ = val; }
-	inline int PositionY() const { return positionY_; }
-	inline void PositionY(int val) { positionY_ = val; }
-	inline int PositionZ() const { return positionZ_; }
-	inline void PositionZ(int val) { positionZ_ = val; }
 
 private:
 	std::string name_;
@@ -42,13 +35,7 @@ private:
 	int colorlessCost_;
 	int colorCost_;
 
-	int scaleX_;
-	int scaleY_;
-	int scaleZ_;
 
-	int positionX_;
-	int positionY_;
-	int positionZ_;
 
 
 };

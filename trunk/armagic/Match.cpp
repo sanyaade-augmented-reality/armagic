@@ -6,6 +6,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 using namespace irrAr;
 using namespace irrklang;
@@ -87,13 +88,13 @@ int Match::loadCards() {
 	std::string texture;
 	std::string marker;
 
-	int scaleX = -1;
-	int scaleY = -1;
-	int scaleZ = -1;
+	double scaleX = -1;
+	double scaleY = -1;
+	double scaleZ = -1;
 
-	int positionX = -1;
-	int positionY = -1;
-	int positionZ = -1;
+	double positionX = -1;
+	double positionY = -1;
+	double positionZ = -1;
 
 	char color[6] = "";
 
@@ -134,15 +135,15 @@ int Match::loadCards() {
 				marker = xml->getAttributeValue("value");
 			else if(strcmp("scale",xml->getNodeName()) == 0)
 			{
-				scaleX = xml->getAttributeValueAsInt("scaleX");
-				scaleY = xml->getAttributeValueAsInt("scaleY");
-				scaleZ = xml->getAttributeValueAsInt("scaleZ");
+				scaleX = atof(xml->getAttributeValue("scaleX"));
+				scaleY = atof(xml->getAttributeValue("scaleY"));
+				scaleZ = atof(xml->getAttributeValue("scaleZ"));
 			}
 			else if(strcmp("position",xml->getNodeName()) == 0)
 			{
-				positionX = xml->getAttributeValueAsInt("positionX");
-				positionY = xml->getAttributeValueAsInt("positionY");
-				positionZ = xml->getAttributeValueAsInt("positionZ");
+				positionX = atof(xml->getAttributeValue("positionX"));
+				positionY = atof(xml->getAttributeValue("positionY"));
+				positionZ = atof(xml->getAttributeValue("positionZ"));
 			}
 			else if(strcmp("colors",xml->getNodeName()) == 0)
 				strcpy(color, xml->getAttributeValue("value"));
@@ -174,19 +175,18 @@ int Match::loadCards() {
 				if(IsCreature)
 				{
 					//Instantiate the creatures
-					cards_[cardNumber] = new CreatureCard(name,power,toughness,colorlessCost,colorCost,
+					cards_[cardNumber] = new CreatureCard(ReturnColorEnum(color),marker,model,texture,true,
+						name,power,toughness,colorlessCost,colorCost,
 						scaleX,scaleY,scaleZ,positionX,positionY,positionZ);
-					cards_[cardNumber]->setModel(model);
-					cards_[cardNumber]->setTexture(texture);
-					cards_[cardNumber]->setMarker(marker);
-					cards_[cardNumber]->setColor(ReturnColorEnum(color));
-
+					
 					IsCardRead = false;
 				}
 				else
 				{
 					//Instantiate the lands
-					cards_[cardNumber] = new LandCard();
+					cards_[cardNumber] = new LandCard(ReturnColorEnum(color),marker,texture,true,
+						scaleX,scaleY,scaleZ,positionX,positionY,positionZ);
+
 					IsCardRead = false;
 				}
 				break;
@@ -202,23 +202,37 @@ void Match::createNodes(const int numberOfCards) {
 
 	for (int i = 0; i < numberOfCards; i++) 
 	{
-		sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh((cards_[i]->getModel().c_str())));
-		if (sceneNodes_[i]) {
-			sceneNodes_[i]->setMaterialTexture(0,driver_->getTexture(cards_[i]->getTexture().c_str()));
-			sceneNodes_[i]->setRotation(vector3df(0,180,0));
-			sceneNodes_[i]->setMaterialFlag(video::EMF_LIGHTING, false);
-			sceneNodes_[i]->setAnimationSpeed(15);
-			
-			sceneNodes_[i]->setScale(vector3df(((CreatureCard*) cards_[i])->getScaleX(),
-											   ((CreatureCard*) cards_[i])->getScaleY(),
-											   ((CreatureCard*) cards_[i])->getScaleZ()));
+		if(cards_[i]->getIsCreature())
+		{
+			sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh((cards_[i]->getModel().c_str())));
+			if (sceneNodes_[i]) {
+				sceneNodes_[i]->setMaterialTexture(0,driver_->getTexture(cards_[i]->getTexture().c_str()));
+				sceneNodes_[i]->setRotation(vector3df(0,180,0));
+				sceneNodes_[i]->setMaterialFlag(video::EMF_LIGHTING, false);
+				sceneNodes_[i]->setAnimationSpeed(15);
+				
+				sceneNodes_[i]->setScale(vector3df(((CreatureCard*) cards_[i])->getScaleX(),
+					((CreatureCard*) cards_[i])->getScaleY(),
+					((CreatureCard*) cards_[i])->getScaleZ()));
 
-			sceneNodes_[i]->setPosition(vector3df(((CreatureCard*) cards_[i])->PositionX(),
-												  ((CreatureCard*) cards_[i])->PositionY(),
-												  ((CreatureCard*) cards_[i])->PositionZ()));
+				sceneNodes_[i]->setPosition(vector3df(((CreatureCard*) cards_[i])->getPositionX(),
+					((CreatureCard*) cards_[i])->getPositionY(),
+					((CreatureCard*) cards_[i])->getPositionZ()));
+			}
+			// Bind with artoolkit
+			armgr_->addARSceneNode(cards_[i]->getMarker().c_str(),sceneNodes_[i]);
 		}
-		// Bind with artoolkit
-		armgr_->addARSceneNode(cards_[i]->getMarker().c_str(),sceneNodes_[i]);
+		else
+		{
+			//grass
+			//sceneNodes_[i] = smgr->addHillPlaneMesh("land",dimension2d<f32>(20,20),dimension2d<u32>(3,2),0,0,dimension2d<f32>(0,0),dimension2d<f32>(10,10));
+			//ISceneNode* grass = smgr->addWaterSurfaceSceneNode(mesh->getMesh(0), 3.0f, 300.0f, 30.0f);
+			//grass->setMaterialTexture(0,driver->getTexture(cards_[i]->getTexture().c_str()));
+			//grass->setMaterialType(video::EMT_REFLECTION_2_LAYER);
+			//grass->setMaterialType(video::EMT_LIGHTMAP_LIGHTING);
+			//grass->setPosition(vector3df(0,-25,0));
+			//grass->setParent(fairy);
+		}
 	}
 }
 

@@ -17,20 +17,33 @@ public:
 	};
 
 	inline Color getColor() { return color_; }
-	inline void setColor(Color color) { color_ = color; }
 	inline std::string getMarker() const { return marker_; }
-	inline void setMarker(std::string val) { marker_ = val; }
 	inline std::string getModel() const { return model_; }
-	inline void setModel(std::string val) { model_ = val; }
 	inline std::string getTexture() const { return texture_; }
-	inline void setTexture(std::string val) { texture_ = val; }
+	inline bool getIsCreature() const { return isCreature_; }
+
+	inline double getScaleX() const { return scaleX_; }
+	inline double getScaleY() const { return scaleY_; }
+	inline double getScaleZ() const { return scaleZ_; }
+
+	inline double getPositionX() const { return positionX_; }
+	inline double getPositionY() const { return positionY_; }
+	inline double getPositionZ() const { return positionZ_; }
 
 protected:
 	Color color_;
 	std::string marker_;
 	std::string model_;
 	std::string texture_;
+	bool isCreature_;
 
+	double scaleX_;
+	double scaleY_;
+	double scaleZ_;
+
+	double positionX_;
+	double positionY_;
+	double positionZ_;
 };
 
 #endif
