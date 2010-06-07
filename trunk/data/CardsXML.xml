@@ -14,23 +14,23 @@
     <model value="../data/models/faerie.md2"/>
     <texture value="../data/models/faerie.jpg"/>
     <marker value="../data/markers/patt.simple1"/>
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
+    <scale scaleX="10" scaleY="10" scaleZ="10"/>
     <position positionX="0" positionY="0" positionZ="0"/>
     - <colors value="green"/>
     <registers colorless="1" green="1" red="0" blue="0" white="0" black="0" power="2" toughness="2"/>
   </card>
   <card name="Dino" cardNumber="2" cardType="creature">
-    <model value="../data/models/dino.md2"/>
+    <model value="../data/models/dino.3ds"/>
     <texture value="../data/models/dino.jpg"/>
-    <marker value="../data/markers/patt.simple2"/>
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
+    <marker value="../data/markers/patt.b"/>
+    <scale scaleX="0.1" scaleY="0.1" scaleZ="0.1"/>
+    <position positionX="-100" positionY="-200" positionZ="-100"/>
     - <colors value="red"/>
     <registers colorless="2" green="0" red="1" blue="0" white="0" black="0" power="3" toughness="3"/>
   </card>
   <card name="Sydney" cardNumber="3" cardType="creature">
     <model value="../data/models/sydney.md2" />
-    <texture value="../data/models/sydney.jpg" />
+    <texture value="../data/models/sydney.bmp" />
     <marker value="../data/markers/patt.kanji" />
     <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
     <position positionX="0" positionY="0" positionZ="0"/>
@@ -41,15 +41,15 @@
     <model value="../data/models/skeleton.3DS" />
     <texture value="../data/models/skeleton.jpg" />
     <marker value="../data/markers/multi/patt.a" />
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
+    <scale scaleX="30" scaleY="30" scaleZ="30"/>
+    <position positionX="0" positionY="50" positionZ="0"/>
     - <colors value="black"/>
     <registers colorless="0" green="0" red="0" blue="0" white="0" black="2" power="2" toughness="2"/>
   </card>
   <card name="Horse" cardNumber="5" cardType="creature">
     <model value="../data/models/horse.md2" />
     <texture value="../data/models/horse.pcx" />
-    <marker value="../data/markers/multi/patt.b" />
+    <marker value="../data/markers/multi/patt.simple2" />
     <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
     <position positionX="0" positionY="0" positionZ="0"/>
     - <colors value="green"/>
@@ -59,8 +59,8 @@
     <model value="../data/models/dragon.3DS" />
     <texture value="../data/models/dragon.jpg" />
     <marker value="../data/markers/multi/patt.c" />
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
+    <scale scaleX="35" scaleY="35" scaleZ="35"/>
+    <position positionX="0" positionY="75" positionZ="0"/>
     - <colors value="black"/>
     -<registers colorless="3" green="0" red="1" blue="0" white="0" black="0" power="4" toughness="4"/>
   </card>
