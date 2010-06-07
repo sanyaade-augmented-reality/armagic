@@ -27,9 +27,11 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
 	smgr_ = device_->getSceneManager();
 	guienv_ = device_->getGUIEnvironment();	
 
+	int numberOfCards = -1;
+
 	setupCamera();
-	loadCards();
-	createNodes();
+	numberOfCards = loadCards();
+	createNodes(numberOfCards);
 }
 
 Match::~Match() {
@@ -38,10 +40,32 @@ Match::~Match() {
 	arVideoClose();
 }
 
-// AQUI DEVE FICAR A CARGA DAS CARTAS
-// O XML FICA EM ALGUM LUGAR PRE-DETERMINADO
-// LE-SE O XML E CRIA-SE UMA CARD POR CARTA
-void Match::loadCards() {
+
+/// <summary>
+/// Return a COLOR enumeration from a Color 
+/// </summary>
+/// <param name="color">a color CHAR</param>
+/// <returns></returns>
+Card::Color Match::ReturnColorEnum(char color[6])
+{
+	if(strcmp(color,"green")==0)
+		return Card::COLOR_GREEN;
+	else if(strcmp(color,"red")==0)
+		return Card::COLOR_RED;
+	else if(strcmp(color,"blue")==0)
+		return Card::COLOR_BLUE;
+	else if(strcmp(color,"white")==0)
+		return Card::COLOR_WHITE;
+	else if(strcmp(color,"black")==0)
+		return Card::COLOR_BLACK;
+}
+
+/// <summary>
+/// This methods read a pre-located XML file which contains all cards and
+/// the information to build the virtual objects of them (model, markers, textures...)
+/// </summary>
+/// <returns>The total number of cards in the XML file</returns>
+int Match::loadCards() {
 
 	// create the reader using one of the factory functions
 	IrrXMLReader* xml = createIrrXMLReader("../data/CardsXML.xml");
@@ -151,7 +175,13 @@ void Match::loadCards() {
 				if(IsCreature)
 				{
 					//Instantiate the creatures
-					cards_[cardNumber] = new CreatureCard(name,power,toughness,colorlessCost,colorCost);
+					cards_[cardNumber] = new CreatureCard(name,power,toughness,colorlessCost,colorCost,
+						scaleX,scaleY,scaleZ,positionX,positionY,positionZ);
+					cards_[cardNumber]->setModel(model);
+					cards_[cardNumber]->setTexture(texture);
+					cards_[cardNumber]->setMarker(marker);
+					cards_[cardNumber]->setColor(ReturnColorEnum(color));
+
 					IsCardRead = false;
 				}
 				else
@@ -163,53 +193,33 @@ void Match::loadCards() {
 				break;
 		}
 	}
-
-	/*for (int i=0; i <= cardNumber; i++)
-	{
-	cout << cards_[i].getModel() << " " << cards_[i].getTexture() << " " << cards_[i].getMarker() << endl;
-	}*/
-
-	//cards_.resize(NUMBER_OF_CARDS);	//<- NUMBER OF CARDS DEVE SER LIDO DO XML, ESTA VAR DEVE *SUMIR*
-	//sceneNodes_.resize(NUMBER_OF_CARDS);
-	//for (int i = 0; i < NUMBER_OF_CARDS; i++) {
-	//	Card& c = cards_[i];
-	//	c.setMarkerId(markers::Marker(i));
-	//	c.setModel(models::SYDNEY);				// FIXME
-	//}
+	return numberOfCards;
 }
 
-//Color selectColor(const std::string& color){
-//if (strcmp(color,"black")==0)
-//	return COLOR_BLACK; 
-//else if(strcmp(color,"red")==0)
-//	return COLOR_RED;
-//else if (strcmp(color,"green")==0)
-//	return COLOR_GREEN;
-//else if (strcmp(color,"white")==0)
-//	return COLOR_WHITE;
-//else if (strcmp(color,"blue")==0)
-//	return COLOR_BLUE;
-//}
 
 // PARA CADA CARTA CRIA-SE UM NODE SEGUINDO O MODELO ABAIXO
 // TODOS NO VETOR
-void Match::createNodes() {
-	for (int i = 0; i < NUMBER_OF_CARDS; i++) {
-		sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh("../data/models/dwarf.x"));
+void Match::createNodes(const int numberOfCards) {
+
+	for (int i = 0; i < numberOfCards; i++) 
+	{
+		sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh((cards_[i]->getModel().c_str())));
 		if (sceneNodes_[i]) {
-			sceneNodes_[i]->setMaterialTexture(0,driver_->getTexture("../data/models/dwarf.jpg"));
+			sceneNodes_[i]->setMaterialTexture(0,driver_->getTexture(cards_[i]->getTexture().c_str()));
 			sceneNodes_[i]->setRotation(vector3df(0,180,0));
 			sceneNodes_[i]->setMaterialFlag(video::EMF_LIGHTING, false);
 			sceneNodes_[i]->setAnimationSpeed(15);
-			sceneNodes_[i]->setScale(vector3df(15,15,15));
-			sceneNodes_[i]->setPosition(vector3df(0,75,0));
-			/*bird
-			sceneNodes_[i]->setScale(vector3df(0.1,0.1,0.1));
-			sceneNodes_[i]->setPosition(vector3df(-100,-200,-100));*/
+			
+			sceneNodes_[i]->setScale(vector3df(((CreatureCard*) cards_[i])->getScaleX(),
+											   ((CreatureCard*) cards_[i])->getScaleY(),
+											   ((CreatureCard*) cards_[i])->getScaleZ()));
+
+			sceneNodes_[i]->setPosition(vector3df(((CreatureCard*) cards_[i])->PositionX(),
+												  ((CreatureCard*) cards_[i])->PositionY(),
+												  ((CreatureCard*) cards_[i])->PositionZ()));
 		}
 		// Bind with artoolkit
-		armgr_->addARSceneNode("../data/markers/patt.hiro",
-			sceneNodes_[i]);
+		armgr_->addARSceneNode(cards_[i]->getMarker().c_str(),sceneNodes_[i]);
 	}
 }
 
