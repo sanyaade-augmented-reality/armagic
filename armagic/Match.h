@@ -41,6 +41,8 @@ private:
 
 	//Color selectColor(const std::string& color);
 	int loadCards();
+
+	CreatureCard::Ability ReturnAbilityEnum(char ability[3]);
 	Card::Color ReturnColorEnum(char color[6]);
 	void createNodes(const int numberOfCards);
 	void setupCamera();

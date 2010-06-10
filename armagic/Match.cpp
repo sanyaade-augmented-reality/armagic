@@ -60,6 +60,24 @@ Card::Color Match::ReturnColorEnum(char color[6])
 		return Card::COLOR_BLACK;
 }
 
+
+
+/// <summary>
+/// Return a ABILITY enumeration from a ability
+/// </summary>
+/// <param name="ability">a ability CHAR</param>
+/// <returns></returns>
+CreatureCard::Ability Match::ReturnAbilityEnum(char ability[3])
+{
+	if(strcmp(ability,"FLY")==0)
+		return CreatureCard::Ability::ABLITY_FLY;
+	else if (strcmp(ability,"TRA")==0)
+		return CreatureCard::Ability::ABILITY_TRAMPLE;
+	else if(strcmp(ability,"INI")==0)
+		return CreatureCard::Ability::ABILITY_INICIATIVE;
+	else 
+		return CreatureCard::Ability::NO_ABILITY;
+}
 /// <summary>
 /// This methods read a pre-located XML file which contains all cards and
 /// the information to build the virtual objects of them (model, markers, textures...)
@@ -70,6 +88,7 @@ int Match::loadCards() {
 	// create the reader using one of the factory functions
 	IrrXMLReader* xml = createIrrXMLReader("../data/CardsXML.xml");
 
+	
 	//The total number of cards in the game (including creatures and lands)
 	int numberOfCards = -1;
 	int numberOfCreatures = -1;
@@ -97,6 +116,7 @@ int Match::loadCards() {
 	double positionZ = -1;
 
 	char color[6] = "";
+	char ability[3] = "";
 
 	int colorlessCost = -1;
 	int colorCost = -1;
@@ -147,6 +167,11 @@ int Match::loadCards() {
 			}
 			else if(strcmp("colors",xml->getNodeName()) == 0)
 				strcpy(color, xml->getAttributeValue("value"));
+			else if(strcmp("ability",xml->getNodeName()) == 0)
+			{
+				if(IsCreature)
+					strcpy(ability,xml->getAttributeValue("value"));
+			}
 			else if(strcmp("registers",xml->getNodeName()) == 0)
 			{
 				//<registers colorless="1" green="0" red="1" blue="0" white="0" black="0" power="1" toughness="2"/>
@@ -174,8 +199,9 @@ int Match::loadCards() {
 			if(IsCardRead)
 				if(IsCreature)
 				{
+
 					//Instantiate the creatures
-					cards_[cardNumber] = new CreatureCard(ReturnColorEnum(color),marker,model,texture,true,
+					cards_[cardNumber] = new CreatureCard(ReturnColorEnum(color),ReturnAbilityEnum(ability),marker,model,texture,true,
 						name,power,toughness,colorlessCost,colorCost,
 						scaleX,scaleY,scaleZ,positionX,positionY,positionZ);
 					
