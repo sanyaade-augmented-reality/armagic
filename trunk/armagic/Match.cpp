@@ -116,7 +116,7 @@ int Match::loadCards() {
 	double positionZ = -1;
 
 	char color[6] = "";
-	char ability[3] = "";
+	char ability[4] = "";
 
 	int colorlessCost = -1;
 	int colorCost = -1;
