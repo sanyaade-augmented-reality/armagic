@@ -1,6 +1,7 @@
 #ifndef ARMAGIC_PLAYER_H_
 #define ARMAGIC_PLAYER_H_
 
+#include "Card.h"
 #include <vector>
 
 class Player
@@ -101,3 +102,4 @@ private:
 	std::vector<Card*> inGameCreatures_;
 
 };
+#endif

@@ -6,13 +6,23 @@
 
 class CreatureCard : public Card {
 public:
+	enum Ability {
+		ABLITY_FLY,
+		ABILITY_INICIATIVE,
+		ABILITY_TRAMPLE,
+		NO_ABILITY
+	};
+
 	CreatureCard(
-		Color color, const	std::string marker, const std::string model, const std::string texture, const bool isCreature,
+		Color color, Ability ability, const	std::string marker, const std::string model, const std::string texture, const bool isCreature,
 		const std::string& name, const int attack, const int defense, const int colorlessCost, const int colorCost,
 		const double scaleX, const double scaleY, const double scaleZ, const double positionX, const double positionY, const double positionZ);
 	
 	virtual ~CreatureCard();
 
+
+
+	inline CreatureCard::Ability getAbility() const { return ability_; }
 	inline std::string getName() const { return name_; }
 	inline int getAttack() const { return attack_; }
 	inline int getDefense() const { return defense_; }
@@ -27,6 +37,7 @@ public:
 
 
 private:
+	Ability ability_;
 	std::string name_;
 	int attack_;
 	int defense_;

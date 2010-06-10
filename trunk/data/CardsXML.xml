@@ -8,6 +8,7 @@
     <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
     <position positionX="0" positionY="0" positionZ="0"/>
     <colors value="red"/>
+    <ability value=""/>
     <registers colorless="1" green="0" red="1" blue="0" white="0" black="0" power="1" toughness="2"/>
   </card>
   <card name="Faerie" cardNumber="1" cardType="creature">
@@ -17,6 +18,7 @@
     <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
     <position positionX="0" positionY="0" positionZ="0"/>
     <colors value="green"/>
+    <ability value="FLY"/>
     <registers colorless="1" green="1" red="0" blue="0" white="0" black="0" power="2" toughness="2"/>
   </card>
   <card name="Dino" cardNumber="2" cardType="creature">
@@ -26,6 +28,7 @@
     <scale scaleX="1" scaleY="1" scaleZ="1"/>
     <position positionX="0" positionY="0" positionZ="0"/>
     <colors value="red"/>
+    <ability value="TRA"/>
     <registers colorless="2" green="0" red="1" blue="0" white="0" black="0" power="3" toughness="3"/>
   </card>
   <card name="Sydney" cardNumber="3" cardType="creature">
@@ -35,6 +38,7 @@
     <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
     <position positionX="0" positionY="0" positionZ="0"/>
     <colors value="black"/>
+    <ability value="INI"/>
     <registers colorless="1" green="0" red="0" blue="0" white="0" black="1" power="1" toughness="1"/>
   </card>
   <card name="Skeleton" cardNumber="4" cardType="creature">
@@ -44,6 +48,7 @@
     <scale scaleX="30" scaleY="30" scaleZ="30"/>
     <position positionX="0" positionY="50" positionZ="0"/>
     <colors value="black"/>
+    <ability value=""/>
     <registers colorless="0" green="0" red="0" blue="0" white="0" black="2" power="2" toughness="2"/>
   </card>
   <card name="Horse" cardNumber="5" cardType="creature">
@@ -53,6 +58,7 @@
     <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
     <position positionX="0" positionY="0" positionZ="0"/>
     <colors value="green"/>
+    <ability value=""/>
     <registers colorless="0" green="1" red="0" blue="0" white="0" black="0" power="1" toughness="1"/>
   </card>
   <card name="Dragon" cardNumber="6" cardType="creature">
@@ -62,6 +68,7 @@
     <scale scaleX="35" scaleY="35" scaleZ="35"/>
     <position positionX="0" positionY="75" positionZ="0"/>
     <colors value="black"/>
+    <ability value="FLY"/>
     <registers colorless="3" green="0" red="1" blue="0" white="0" black="0" power="4" toughness="4"/>
   </card>
   <!-- Lands: Three land cards (mountain, forest and swamp) using markers D, G and F, respectively.-->
@@ -72,6 +79,7 @@
     <scale scaleX="30" scaleY="30" scaleZ="0"/>
     <position positionX="0" positionY="-25" positionZ="0"/>
     <colors value="red"/>
+    <ability value=""/>
     <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
   </card>
   <card name="Forest" cardNumber="8" cardType="land">
@@ -81,6 +89,7 @@
     <scale scaleX="30" scaleY="30" scaleZ="0"/>
     <position positionX="0" positionY="-25" positionZ="0"/>
     <colors value="green"/>
+    <ability value=""/>
     <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
   </card>
   <card name="Swamp" cardNumber="9" cardType="land">
@@ -90,6 +99,7 @@
     <scale scaleX="30" scaleY="30" scaleZ="0"/>
     <position positionX="0" positionY="-25" positionZ="0"/>
     <colors value="black"/>
+    <ability value=""/>
     <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
   </card>
 </cards>
