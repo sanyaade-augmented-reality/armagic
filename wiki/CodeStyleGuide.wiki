@@ -1,6 +1,6 @@
 #summary Code Style Guide
 
-Strongly (but not completely) based on the Google C++ Stype Guide.
+Strongly (but not completely) based on the Google C++ Style Guide.
 
 Everything must be in english.
 
