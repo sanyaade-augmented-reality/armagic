@@ -1,16 +1,8 @@
 #include "Match.h"
 #include <irrXML.h>
-//using namespace irr; // irrXML is located 
-//using namespace io;  // in the namespace irr::io
-#include <iostream>
-#include <string>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 
 using namespace irrAr;
 using namespace irrklang;
-using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
@@ -20,18 +12,17 @@ using namespace std;
 
 Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
 			 EventHandler* eventHandler)
-			 : device_(device), soundEngine_(soundEngine), eventHandler_(eventHandler)
+			 : device_(device), soundEngine_(soundEngine),
+			 eventHandler_(eventHandler)
 {
 	armgr_ = new IARManager(device_);
 	driver_ = device_->getVideoDriver();
 	smgr_ = device_->getSceneManager();
 	guienv_ = device_->getGUIEnvironment();	
 
-	int numberOfCards = -1;
-
 	setupCamera();
-	numberOfCards = loadCards();
-	createNodes(numberOfCards);
+	numberOfCards_ = loadCards();
+	createNodes(numberOfCards_);
 }
 
 Match::~Match() {
@@ -40,14 +31,7 @@ Match::~Match() {
 	arVideoClose();
 }
 
-
-/// <summary>
-/// Return a COLOR enumeration from a Color 
-/// </summary>
-/// <param name="color">a color CHAR</param>
-/// <returns></returns>
-Card::Color Match::ReturnColorEnum(char color[6])
-{
+Card::Color Match::returnColorEnum(char color[6]) {
 	if(strcmp(color,"green")==0)
 		return Card::COLOR_GREEN;
 	else if(strcmp(color,"red")==0)
@@ -61,13 +45,7 @@ Card::Color Match::ReturnColorEnum(char color[6])
 }
 
 
-
-/// <summary>
-/// Return a ABILITY enumeration from a ability
-/// </summary>
-/// <param name="ability">a ability CHAR</param>
-/// <returns></returns>
-CreatureCard::Ability Match::ReturnAbilityEnum(char ability[3])
+CreatureCard::Ability Match::returnAbilityEnum(char ability[3])
 {
 	if(strcmp(ability,"FLY")==0)
 		return CreatureCard::Ability::ABLITY_FLY;
@@ -78,17 +56,14 @@ CreatureCard::Ability Match::ReturnAbilityEnum(char ability[3])
 	else 
 		return CreatureCard::Ability::NO_ABILITY;
 }
-/// <summary>
-/// This methods read a pre-located XML file which contains all cards and
-/// the information to build the virtual objects of them (model, markers, textures...)
-/// </summary>
-/// <returns>The total number of cards in the XML file</returns>
-int Match::loadCards() {
 
+// This methods read a pre-located XML file which contains all cards and
+// the information to build the virtual objects of them (model, markers, textures...)
+// Returns the total number of cards in the XML file
+int Match::loadCards() {
 	// create the reader using one of the factory functions
 	IrrXMLReader* xml = createIrrXMLReader("../data/CardsXML.xml");
 
-	
 	//The total number of cards in the game (including creatures and lands)
 	int numberOfCards = -1;
 	int numberOfCreatures = -1;
@@ -107,29 +82,20 @@ int Match::loadCards() {
 	std::string texture;
 	std::string marker;
 
-	double scaleX = -1;
-	double scaleY = -1;
-	double scaleZ = -1;
-
-	double positionX = -1;
-	double positionY = -1;
-	double positionZ = -1;
+	double scale = -1;
+	core::vector3df position;
 
 	char color[6] = "";
 	char ability[4] = "";
 
 	int colorlessCost = -1;
 	int colorCost = -1;
-	int power = -1;
-	int toughness = -1;
+	int attack = -1;
+	int defense = -1;
 
-	while (xml && xml->read())
-	{
-		switch(xml->getNodeType())
-		{
-		case EXN_ELEMENT:
-			if (strcmp("cards", xml->getNodeName()) == 0)
-			{
+	while (xml && xml->read()) {
+		if (xml->getNodeType() == EXN_ELEMENT) {
+			if (strcmp("cards", xml->getNodeName()) == 0) {
 				numberOfCards = xml->getAttributeValueAsInt("numberOfCards");
 				sceneNodes_.resize(numberOfCards);
 				cards_.resize(numberOfCards);
@@ -138,8 +104,7 @@ int Match::loadCards() {
 				numberOfLands = xml->getAttributeValueAsInt("landCards");
 
 			}
-			else if (strcmp("card", xml->getNodeName()) == 0)
-			{
+			else if (strcmp("card", xml->getNodeName()) == 0) {
 				name = xml->getAttributeValue("name");
 				cardNumber = xml->getAttributeValueAsInt("cardNumber");
 				if(strcmp("creature",xml->getAttributeValue("cardType"))==0)
@@ -147,36 +112,35 @@ int Match::loadCards() {
 				else
 					IsCreature = false;
 			}
-			else if (strcmp("model",xml->getNodeName())==0)
+			else if (strcmp("model",xml->getNodeName())==0) {
 				model = xml->getAttributeValue("value");
-			else if (strcmp("texture",xml->getNodeName()) == 0)
+			}
+			else if (strcmp("texture",xml->getNodeName()) == 0) {
 				texture = xml->getAttributeValue("value");
-			else if(strcmp("marker",xml->getNodeName()) == 0)
+			}
+			else if(strcmp("marker",xml->getNodeName()) == 0) {
 				marker = xml->getAttributeValue("value");
-			else if(strcmp("scale",xml->getNodeName()) == 0)
-			{
-				scaleX = atof(xml->getAttributeValue("scaleX"));
-				scaleY = atof(xml->getAttributeValue("scaleY"));
-				scaleZ = atof(xml->getAttributeValue("scaleZ"));
 			}
-			else if(strcmp("position",xml->getNodeName()) == 0)
-			{
-				positionX = atof(xml->getAttributeValue("positionX"));
-				positionY = atof(xml->getAttributeValue("positionY"));
-				positionZ = atof(xml->getAttributeValue("positionZ"));
+			else if(strcmp("scale",xml->getNodeName()) == 0) {
+				scale = atof(xml->getAttributeValue("scaleX"));
+				scale = atof(xml->getAttributeValue("scaleY"));
+				scale = atof(xml->getAttributeValue("scaleZ"));
 			}
-			else if(strcmp("colors",xml->getNodeName()) == 0)
+			else if(strcmp("position",xml->getNodeName()) == 0) {
+				position.X = atof(xml->getAttributeValue("positionX"));
+				position.Y = atof(xml->getAttributeValue("positionY"));
+				position.Z = atof(xml->getAttributeValue("positionZ"));
+			}
+			else if(strcmp("colors",xml->getNodeName()) == 0) {
 				strcpy(color, xml->getAttributeValue("value"));
-			else if(strcmp("ability",xml->getNodeName()) == 0)
-			{
+			}
+			else if(strcmp("ability",xml->getNodeName()) == 0) {
 				if(IsCreature)
 					strcpy(ability,xml->getAttributeValue("value"));
 			}
-			else if(strcmp("registers",xml->getNodeName()) == 0)
-			{
+			else if(strcmp("registers",xml->getNodeName()) == 0) {
 				//<registers colorless="1" green="0" red="1" blue="0" white="0" black="0" power="1" toughness="2"/>
-				if(IsCreature)
-				{
+				if(IsCreature) {
 					colorlessCost = xml->getAttributeValueAsInt("colorless");
 
 					if(strcmp(color,"green")==0)
@@ -190,32 +154,28 @@ int Match::loadCards() {
 					else if(strcmp(color,"black")==0)
 						colorCost = xml->getAttributeValueAsInt("black");
 
-					power = xml->getAttributeValueAsInt("power");
-					toughness = xml->getAttributeValueAsInt("toughness");
+					attack = xml->getAttributeValueAsInt("power");
+					defense = xml->getAttributeValueAsInt("toughness");
 				}
 				IsCardRead = true;
 			}
 
-			if(IsCardRead)
-				if(IsCreature)
-				{
-
+			if(IsCardRead) {
+				if(IsCreature) {
 					//Instantiate the creatures
-					cards_[cardNumber] = new CreatureCard(ReturnColorEnum(color),ReturnAbilityEnum(ability),marker,model,texture,true,
-						name,power,toughness,colorlessCost,colorCost,
-						scaleX,scaleY,scaleZ,positionX,positionY,positionZ);
+					cards_[cardNumber] = new CreatureCard(returnColorEnum(color),marker,model,texture,
+						name,attack,defense,colorlessCost,colorCost, returnAbilityEnum(ability),scale,position);
 					
 					IsCardRead = false;
 				}
-				else
-				{
+				else {
 					//Instantiate the lands
-					cards_[cardNumber] = new LandCard(ReturnColorEnum(color),marker,texture,true,
-						scaleX,scaleY,scaleZ,positionX,positionY,positionZ);
+					cards_[cardNumber] = new LandCard(returnColorEnum(color),marker,model,texture, "Land",
+						scale,position);
 
 					IsCardRead = false;
 				}
-				break;
+			}
 		}
 	}
 	return numberOfCards;
@@ -228,7 +188,7 @@ void Match::createNodes(const int numberOfCards) {
 
 	for (int i = 0; i < numberOfCards; i++) 
 	{
-		if(cards_[i]->getIsCreature())
+		if(cards_[i]->getType() == Card::Type::CARD_CREATURE)
 		{
 			sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh((cards_[i]->getModel().c_str())));
 			if (sceneNodes_[i]) {
@@ -237,13 +197,10 @@ void Match::createNodes(const int numberOfCards) {
 				sceneNodes_[i]->setMaterialFlag(video::EMF_LIGHTING, false);
 				sceneNodes_[i]->setAnimationSpeed(15);
 				
-				sceneNodes_[i]->setScale(vector3df(((CreatureCard*) cards_[i])->getScaleX(),
-					((CreatureCard*) cards_[i])->getScaleY(),
-					((CreatureCard*) cards_[i])->getScaleZ()));
+				sceneNodes_[i]->setScale(vector3df(cards_[i]->getScale(),
+					cards_[i]->getScale(),cards_[i]->getScale()));
 
-				sceneNodes_[i]->setPosition(vector3df(((CreatureCard*) cards_[i])->getPositionX(),
-					((CreatureCard*) cards_[i])->getPositionY(),
-					((CreatureCard*) cards_[i])->getPositionZ()));
+				sceneNodes_[i]->setPosition(cards_[i]->getPosition());
 			}
 			// Bind with artoolkit
 			armgr_->addARSceneNode(cards_[i]->getMarker().c_str(),sceneNodes_[i]);
@@ -284,7 +241,7 @@ void Match::mainLoop() {
 		armgr_->drawBackground();
 
 		// Event handling
-		if (eventHandler_->IsKeyDown(EKEY_CODE::KEY_ESCAPE))
+		if (eventHandler_->IsKeyDown(KEY_ESCAPE))
 			return;
 
 		smgr_->drawAll();
