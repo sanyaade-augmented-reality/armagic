@@ -226,19 +226,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\markers.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Match.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Menu.h"
-				>
-			</File>
-			<File
-				RelativePath=".\models.h"
 				>
 			</File>
 			<File
@@ -304,19 +296,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\markers.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Match.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Menu.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\models.cpp"
 				>
 			</File>
 			<File
