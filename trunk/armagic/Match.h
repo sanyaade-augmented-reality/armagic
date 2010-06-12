@@ -18,7 +18,11 @@ public:
 	bool isRunning() const;
 	void mainLoop();
 
+	Card::Color returnColorEnum(char color[6]);
+	CreatureCard::Ability returnAbilityEnum(char ability[3]);
+
 private:
+	int numberOfCards_;
 	// Vector of cards, with associated model and marker
 	std::vector<Card*> cards_;
 	// Vector of nodes
@@ -42,8 +46,6 @@ private:
 	//Color selectColor(const std::string& color);
 	int loadCards();
 
-	CreatureCard::Ability ReturnAbilityEnum(char ability[3]);
-	Card::Color ReturnColorEnum(char color[6]);
 	void createNodes(const int numberOfCards);
 	void setupCamera();
 };

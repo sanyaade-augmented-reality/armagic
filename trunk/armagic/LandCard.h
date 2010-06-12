@@ -5,8 +5,11 @@
 
 class LandCard : public Card {
 public:
-	LandCard(Color color, const	std::string marker, const std::string texture, const bool isCreature,
-		     const double scaleX, const double scaleY, const double scaleZ, const double positionX, const double positionY, const double positionZ);
+	LandCard(const Color color, const std::string& marker,
+		const std::string& model, const std::string& texture,
+		const std::string& name, const double scale,
+		const core::vector3df& position);
+
 	virtual ~LandCard();
 
 	void use();
