@@ -7,14 +7,14 @@
 class Player
 {
 public:
-	Player(void);
-	~Player(void);
+	Player();
+	~Player();
 
 
-	inline int getCurrentLife() const { return currentLife_; }
-	inline void setCurrentLife(int val) { currentLife_ = val; }
-	inline int getCurrentMana() const { return currentMana_; }
-	inline void setCurrentMana(int val) { currentMana_ = val; }
+	inline int getLife() const { return life_; }
+	inline void setLife(int val) { life_ = val; }
+	inline int getMana() const { return mana_; }
+	inline void setMana(int val) { mana_ = val; }
 	/// Gets if the player choose focus in split the damage from a blocked attacking creature
 	/// he controls to kill the most blocking creatures he can.
 	inline bool getKillMoreCreatures() const { return killMoreCreatures_; }
@@ -47,8 +47,8 @@ public:
 	inline void InGameCreatures(std::vector<Card*> val) { inGameCreatures_ = val; }
 
 private:
-	int currentLife_;
-	int currentMana_;
+	int life_;
+	int mana_;
 	bool killMoreCreatures_;
 	bool killStrongerCreatures_;
 	bool isCurrentTurn_;

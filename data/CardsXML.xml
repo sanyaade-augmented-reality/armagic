@@ -5,91 +5,91 @@
     <model value="../data/models/dwarf.x"/>
     <texture value="../data/models/dwarf.jpg"/>
     <marker value="../data/markers/patt.hiro"/>
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
+    <scale value="2.5"/>
     <colors value="red"/>
+    <ability value=""/>
     <registers colorless="1" green="0" red="1" blue="0" white="0" black="0" power="1" toughness="2"/>
   </card>
   <card name="Faerie" cardNumber="1" cardType="creature">
     <model value="../data/models/faerie.md2"/>
     <texture value="../data/models/faerie.jpg"/>
-    <marker value="../data/markers/patt.simple1"/>
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="green"/>
+    <marker value="../data/markers/patt.kanji"/>
+    <scale value="2.5"/>
+    <colors value="green"/>
+    <ability value="FLY"/>
     <registers colorless="1" green="1" red="0" blue="0" white="0" black="0" power="2" toughness="2"/>
   </card>
   <card name="Dino" cardNumber="2" cardType="creature">
-    <model value="../data/models/dino.md2"/>
+    <model value="../data/models/dino.3ds"/>
     <texture value="../data/models/dino.jpg"/>
-    <marker value="../data/markers/patt.simple2"/>
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="red"/>
+    <marker value="../data/markers/patt.simple1"/>
+    <scale value="1"/>
+    <colors value="red"/>
+    <ability value="TRA"/>
     <registers colorless="2" green="0" red="1" blue="0" white="0" black="0" power="3" toughness="3"/>
   </card>
   <card name="Sydney" cardNumber="3" cardType="creature">
     <model value="../data/models/sydney.md2" />
-    <texture value="../data/models/sydney.jpg" />
-    <marker value="../data/markers/patt.kanji" />
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="black"/>
+    <texture value="../data/models/sydney.bmp" />
+    <marker value="../data/markers/patt.simple2" />
+    <scale value="2.5"/>
+    <colors value="black"/>
+    <ability value="INI"/>
     <registers colorless="1" green="0" red="0" blue="0" white="0" black="1" power="1" toughness="1"/>
   </card>
   <card name="Skeleton" cardNumber="4" cardType="creature">
     <model value="../data/models/skeleton.3DS" />
     <texture value="../data/models/skeleton.jpg" />
-    <marker value="../data/markers/multi/patt.a" />
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="black"/>
+    <marker value="../data/markers/patt.a" />
+    <scale value="30"/>
+    <colors value="black"/>
+    <ability value=""/>
     <registers colorless="0" green="0" red="0" blue="0" white="0" black="2" power="2" toughness="2"/>
   </card>
   <card name="Horse" cardNumber="5" cardType="creature">
     <model value="../data/models/horse.md2" />
     <texture value="../data/models/horse.pcx" />
-    <marker value="../data/markers/multi/patt.b" />
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="green"/>
-    -<registers colorless="0" green="1" red="0" blue="0" white="0" black="0" power="1" toughness="1"/>
+    <marker value="../data/markers/patt.b" />
+    <scale value="2.5"/>
+    <colors value="green"/>
+    <ability value=""/>
+    <registers colorless="0" green="1" red="0" blue="0" white="0" black="0" power="1" toughness="1"/>
   </card>
   <card name="Dragon" cardNumber="6" cardType="creature">
     <model value="../data/models/dragon.3DS" />
     <texture value="../data/models/dragon.jpg" />
-    <marker value="../data/markers/multi/patt.c" />
-    <scale scaleX="2.5" scaleY="2.5" scaleZ="2.5"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="black"/>
-    -<registers colorless="3" green="0" red="1" blue="0" white="0" black="0" power="4" toughness="4"/>
+    <marker value="../data/markers/patt.c" />
+    <scale value="35"/>
+    <colors value="black"/>
+    <ability value="FLY"/>
+    <registers colorless="3" green="0" red="1" blue="0" white="0" black="0" power="4" toughness="4"/>
   </card>
   <!-- Lands: Three land cards (mountain, forest and swamp) using markers D, G and F, respectively.-->
   <card name="Moutain" cardNumber="7" cardType="land">
     <model value="" />
     <texture value="../data/lands/red1.jpg" />
-    <marker value="../data/markers/multi/patt.d" />
-    <scale scaleX="30" scaleY="30" scaleZ="0"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="red"/>
+    <marker value="../data/markers/patt.d" />
+    <scale value="30">
+    <colors value="red"/>
+    <ability value=""/>
     <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
   </card>
   <card name="Forest" cardNumber="8" cardType="land">
     <model value="" />
     <texture value="../data/lands/green1.jpg" />
-    <marker value="../data/markers/multi/patt.g" />
-    <scale scaleX="30" scaleY="30" scaleZ="0"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="green"/>
-    -<registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
+    <marker value="../data/markers/patt.g" />
+    <scale value="30"/>
+    <colors value="green"/>
+    <ability value=""/>
+    <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
   </card>
   <card name="Swamp" cardNumber="9" cardType="land">
     <model value="" />
     <texture value="../data/lands/black1.jpg" />
-    <marker value="../data/markers/multi/patt.f" />
-    <scale scaleX="30" scaleY="30" scaleZ="0"/>
-    <position positionX="0" positionY="0" positionZ="0"/>
-    - <colors value="black"/>
-    -<registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
+    <marker value="../data/markers/patt.f" />
+    <scale value="30"/>
+    <colors value="black"/>
+    <ability value=""/>
+    <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
   </card>
 </cards>

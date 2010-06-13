@@ -1,4 +1,5 @@
 #include "MainMenu.h"
+#include <cassert>
 
 MainMenu::MainMenu(irr::IrrlichtDevice *device,
 				   irrklang::ISoundEngine *soundEngine, EventHandler *eventHandler)
@@ -9,6 +10,12 @@ MainMenu::MainMenu(irr::IrrlichtDevice *device,
 	texMenuSett_ = driver_->getTexture("../data/menu/menu_settings1024x768.jpg");
 	texMenuAbout_ = driver_->getTexture("../data/menu/menu_about1024x768.jpg");
 	texMenuExit_ = driver_->getTexture("../data/menu/menu_exit1024x768.jpg");
+
+	assert(texMenu_);
+	assert(texMenuNew_);
+	assert(texMenuSett_);
+	assert(texMenuAbout_);
+	assert(texMenuExit_);
 }
 
 MainMenu::~MainMenu() { }
