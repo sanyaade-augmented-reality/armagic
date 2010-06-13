@@ -1,10 +1,12 @@
 #include "AboutMenu.h"
+#include <cassert>
 
 AboutMenu::AboutMenu(irr::IrrlichtDevice *device,
 				   irrklang::ISoundEngine *soundEngine, EventHandler *eventHandler)
 				   : Menu(device, soundEngine, eventHandler)
 {
 	texMenu_ = driver_->getTexture("../data/menu/about1024x768.jpg");
+	assert(texMenu_);
 }
 
 AboutMenu::~AboutMenu() { }

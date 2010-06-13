@@ -1,4 +1,5 @@
 #include "Splash.h"
+#include <cassert>
 
 using namespace irrklang;
 using namespace irr;
@@ -15,6 +16,7 @@ Splash::Splash(irr::IrrlichtDevice *device, irrklang::ISoundEngine *soundEngine,
 	guienv_ = device->getGUIEnvironment();
 
 	splash_ = driver_->getTexture("../data/menu/splash1024x768.jpg");
+	assert(splash_);
 }
 
 Splash::~Splash() { }
