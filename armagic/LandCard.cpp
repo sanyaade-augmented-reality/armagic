@@ -3,9 +3,8 @@
 using std::string;
 
 LandCard::LandCard(const Color color, const std::string& marker,
-			const std::string& model, const std::string& texture,
-			const std::string& name, const double scale)
-		: Card(color, marker, model, texture, name, scale)		
+				   const std::string& name, irr::scene::IAnimatedMeshSceneNode* node)
+		: Card(color, marker, name, node)		
 {
 	type_ = Type::CARD_LAND;
 }

@@ -2,8 +2,7 @@
 
 using namespace irrAr;
 
-IARManager::IARManager(IrrlichtDevice *device)
-{
+IARManager::IARManager(IrrlichtDevice *device) {
 	//defaults
 	this->patt_loaded = 0;
 	this->multi_loaded = 0;
@@ -14,10 +13,7 @@ IARManager::IARManager(IrrlichtDevice *device)
 	this->driver = device->getVideoDriver();
 }
 
-IARManager::~IARManager()
-{
-	
-}
+IARManager::~IARManager() { }
 
 dimension2di IARManager::beginCamera(char* cparam_filename, char* win32_vconf_filename, char* unix_config_string)
 {
@@ -161,7 +157,7 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 	arDetectMarker(dataPtr, thresh, &marker_info, &marker_num);
 	
 	//check each mutli-pattern
-	for(p=0;p<this->multi_loaded;p++)
+	for(p=0; p < this->multi_loaded; p++)
 	{
 		int i;
 		double err;
@@ -205,13 +201,13 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 	}
 	
 	//check each pattern
-	for(p=0;p<this->patt_loaded;p++)
+	for(p=0; p < this->patt_loaded; p++)
 	{
 		int i,j,k;
 		double gl_para[16];
 		float glf_para[16];
 		CMatrix4<float> mat;
-		double patt_width     = 80.0;
+		double patt_width = 80.0;
 		double patt_center[2] = {0.0, 0.0};
 		double patt_trans[3][4];
 		

@@ -46,7 +46,6 @@ private:
 	Card::Color returnColorEnum(const char* color);
 	CreatureCard::Ability returnAbilityEnum(const char* ability);
 
-	void createNodes(const int numberOfCards);
 	void setupCamera();
 };
 
