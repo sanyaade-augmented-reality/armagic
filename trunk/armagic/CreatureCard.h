@@ -13,10 +13,9 @@ public:
 	};
 
 	CreatureCard(const Color color, const std::string& marker,
-		const std::string& model, const std::string& texture,
 		const std::string& name, const int attack, const int defense,
 		const int colorlessCost, const int colorCost, const Ability ability,
-		const double scale);
+		irr::scene::IAnimatedMeshSceneNode* node);
 
 	virtual ~CreatureCard();
 

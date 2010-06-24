@@ -20,33 +20,30 @@ public:
 		CARD_CREATURE
 	};
 
-	Card(const Color color, const std::string& marker,
-		const std::string& model, const std::string& texture,
-		const std::string& name, const double scale);
+	Card(const Color color, const std::string& marker, const std::string& name,
+		irr::scene::IAnimatedMeshSceneNode* node);
 
 	Card();
 	virtual ~Card();
 
 	inline Color getColor() { return color_; }
 	inline std::string getMarker() const { return marker_; }
-	inline std::string getModel() const { return model_; }
-	inline std::string getTexture() const { return texture_; }
+	//inline std::string getModel() const { return model_; }
+	//inline std::string getTexture() const { return texture_; }
 	inline std::string getName() const { return name_; }
-	inline double getScale() const { return scale_; }
+	//inline double getScale() const { return scale_; }
 	inline core::vector3df getPosition() const { return position_; }
 	inline Type getType() const { return type_; }
+	inline irr::scene::IAnimatedMeshSceneNode* getNode() const { return node_; }
 
 protected:
 	Color color_;
 	Type type_;
 	std::string name_;
-
 	std::string marker_;
-	std::string model_;
-	std::string texture_;
 
-	double scale_;
 	irr::core::vector3df position_;
+	irr::scene::IAnimatedMeshSceneNode* node_;
 };
 
 #endif

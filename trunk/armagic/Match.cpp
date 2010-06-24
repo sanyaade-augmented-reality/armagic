@@ -1,8 +1,5 @@
 #include "Match.h"
 #include <irrXML.h>
-#include <iostream>
-
-using namespace std;
 
 using namespace irrAr;
 using namespace irrklang;
@@ -25,7 +22,6 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
 
 	setupCamera();
 	numberOfCards_ = loadCards();
-	createNodes(numberOfCards_);
 }
 
 Match::~Match() {
@@ -50,13 +46,13 @@ Card::Color Match::returnColorEnum(const char* color) {
 
 CreatureCard::Ability Match::returnAbilityEnum(const char* ability) {
 	if(strcmp(ability,"FLY")==0)
-		return CreatureCard::Ability::ABLITY_FLY;
+		return CreatureCard::ABLITY_FLY;
 	else if (strcmp(ability,"TRA")==0)
-		return CreatureCard::Ability::ABILITY_TRAMPLE;
+		return CreatureCard::ABILITY_TRAMPLE;
 	else if(strcmp(ability,"INI")==0)
-		return CreatureCard::Ability::ABILITY_INICIATIVE;
+		return CreatureCard::ABILITY_INICIATIVE;
 	else 
-		return CreatureCard::Ability::NO_ABILITY;
+		return CreatureCard::NO_ABILITY;
 }
 
 // This methods read a pre-located XML file which contains all cards and
@@ -137,22 +133,23 @@ int Match::loadCards() {
 
 			if(isCardRead) {
 				if(isCreature) {
-					cout << color << "\n" <<
-						marker << "\n" <<
-						model << "\n" <<
-						texture << "\n" <<
-						name << "\n" <<
-						scale << endl;
-					cout << "\n*******************************************" << endl;
-					//Instantiate the creatures
-					cards_[cardNumber] = new CreatureCard(returnColorEnum(color.c_str()),marker,model,texture,
-						name,attack,defense,colorlessCost,colorCost, returnAbilityEnum(ability.c_str()),scale);
+					// Create a node
+					IAnimatedMeshSceneNode* node = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh(model.c_str()));
+					node->setMaterialTexture(0,driver_->getTexture(texture.c_str()));
+					node->setRotation(vector3df(0,180,0));
+					node->setMaterialFlag(video::EMF_LIGHTING, false);
+					node->setAnimationSpeed(15);
+					node->setScale(vector3df(scale, scale, scale));
+					// Bind with artoolkit
+					armgr_->addARSceneNode(marker.c_str(), node);
+					// Create the card
+					cards_[cardNumber] = new CreatureCard(returnColorEnum(color.c_str()),marker, name,attack,defense,
+						colorlessCost,colorCost, returnAbilityEnum(ability.c_str()), node);
 					isCardRead = false;
 				}
 				else {
 					//Instantiate the lands
-					cards_[cardNumber] = new LandCard(returnColorEnum(color.c_str()),marker,model,
-						texture, "Land", scale);
+					cards_[cardNumber] = new LandCard(returnColorEnum(color.c_str()), marker, "Land", NULL);
 
 					isCardRead = false;
 				}
@@ -160,36 +157,6 @@ int Match::loadCards() {
 		}
 	}
 	return numberOfCards;
-}
-
-void Match::createNodes(const int numberOfCards) {
-	for (int i = 0; i < numberOfCards; i++) {
-		if(cards_[i]->getType() == Card::Type::CARD_CREATURE) {
-			sceneNodes_[i] = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh(cards_[i]->getModel().c_str()));
-			if (sceneNodes_[i]) {
-				sceneNodes_[i]->setMaterialTexture(0,driver_->getTexture(cards_[i]->getTexture().c_str()));
-				sceneNodes_[i]->setRotation(vector3df(0,180,0));
-				sceneNodes_[i]->setMaterialFlag(video::EMF_LIGHTING, false);
-				sceneNodes_[i]->setAnimationSpeed(15);
-				
-				const float scale = cards_[i]->getScale();
-				sceneNodes_[i]->setScale(vector3df(scale, scale, scale));
-			}			
-		}
-		else
-		{
-			//grass
-			//sceneNodes_[i] = smgr->addHillPlaneMesh("land",dimension2d<f32>(20,20),dimension2d<u32>(3,2),0,0,dimension2d<f32>(0,0),dimension2d<f32>(10,10));
-			//ISceneNode* grass = smgr->addWaterSurfaceSceneNode(mesh->getMesh(0), 3.0f, 300.0f, 30.0f);
-			//grass->setMaterialTexture(0,driver->getTexture(cards_[i]->getTexture().c_str()));
-			//grass->setMaterialType(video::EMT_REFLECTION_2_LAYER);
-			//grass->setMaterialType(video::EMT_LIGHTMAP_LIGHTING);
-			//grass->setPosition(vector3df(0,-25,0));
-			//grass->setParent(fairy);
-		}
-		// Bind with artoolkit
-		armgr_->addARSceneNode(cards_[i]->getMarker().c_str(),sceneNodes_[i]);
-	}
 }
 
 void Match::setupCamera() {
