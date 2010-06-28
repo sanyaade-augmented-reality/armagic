@@ -16,6 +16,7 @@ public:
 	virtual ~Camera();
 
 	ARUint8* getFrame() const;
+	void capNext() const;
 
 	inline ARParam getCParam() const { return cparam_; }
 	inline irr::core::dimension2di getDimensions() const { return dimensions_; }

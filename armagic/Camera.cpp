@@ -29,6 +29,10 @@ ARUint8* Camera::getFrame() const {
 	while ( (frame_ = arVideoGetImage()) == NULL ) {
 		arUtilSleep(2);
 	}
-	arVideoCapNext();
+	//arVideoCapNext();
 	return frame_;
+}
+
+void Camera::capNext() const {
+	arVideoCapNext();
 }

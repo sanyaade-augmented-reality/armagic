@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "definitions.h"
 
 using namespace irrklang;
 using namespace irr;
@@ -10,8 +11,8 @@ using namespace gui;
 
 Game::Game() {
 	// FIXME
-	resx_ = 1024;
-	resy_ = 768;
+	resx_ = RESOLUTION_X;
+	resy_ = RESOLUTION_Y;
 	device_ = createDevice(video::EDT_OPENGL, dimension2d<unsigned int>(resx_, resy_),
 		32, false, false, false, &eventHandler_);
 	device_->setWindowCaption(L"ARMagic");
@@ -51,7 +52,7 @@ void Game::mainLoop() {
 				aboutMenu_->show();
 				break;
 			case Menu::MAIN_MENU_EXIT:
-				exit(0);
+				return;
 				break;
 			case Menu::MENU_NONE:
 				break;
