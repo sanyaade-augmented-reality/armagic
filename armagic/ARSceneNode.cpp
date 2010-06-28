@@ -20,6 +20,14 @@ ARSceneNode::ARSceneNode(irr::IrrlichtDevice* device, const std::string& patt,
 	pattId_ = arLoadPatt(patt.c_str());
 }
 
+ARSceneNode::ARSceneNode(irr::IrrlichtDevice* device, const std::string& patt, irr::scene::IAnimatedMeshSceneNode* node) {
+	driver_ = device->getVideoDriver();
+	smgr_ = device->getSceneManager();
+
+	node_ = node;
+	pattId_ = arLoadPatt(patt.c_str());
+}
+
 ARSceneNode::~ARSceneNode() {
 	delete node_;
 }

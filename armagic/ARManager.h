@@ -10,6 +10,8 @@
 #include "Camera.h"
 #include "ARSceneNode.h"
 
+#define __DEBUG
+
 class ARManager {
 public:
 	ARManager(irr::IrrlichtDevice* device);

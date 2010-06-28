@@ -15,6 +15,8 @@ Camera::Camera(const std::string& videoConfig, const std::string& cparamPath) {
 	arParamChangeSize(&wparam, dimensions_.Width, dimensions_.Height, &cparam_);
 	arInitCparam(&cparam_);
 	arParamDisp(&cparam_);
+
+	arVideoCapStart();
 }
 
 Camera::~Camera() {
@@ -24,8 +26,9 @@ Camera::~Camera() {
 }
 
 ARUint8* Camera::getFrame() const {
-	while ( (frame_ = arVideoGetImage()) == NULL )
+	while ( (frame_ = arVideoGetImage()) == NULL ) {
 		arUtilSleep(2);
+	}
 	arVideoCapNext();
 	return frame_;
 }

@@ -8,6 +8,8 @@
 #include "Card.h"
 #include "CreatureCard.h"
 #include "LandCard.h"
+#include "ARManager.h"
+#include "ARSceneNode.h"
 
 class Match {
 public:
@@ -30,6 +32,8 @@ private:
 	irr::scene::ICameraSceneNode* camera_;
 	// IrrAr stuff
 	irrAr::IARManager* armgr_;
+	//ARManager* armgr_;
+
 	// Irrlicht stuff
 	irr::IrrlichtDevice* device_;
 	irr::video::IVideoDriver* driver_;
