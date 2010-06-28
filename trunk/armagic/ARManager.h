@@ -18,6 +18,7 @@ public:
 	void run();
 	void addARSceneNode(ARSceneNode* node);
 	void drawBackground();
+	void fixCamera(irr::scene::ICameraSceneNode* camera);
 
 private:
 	Camera* camera_;

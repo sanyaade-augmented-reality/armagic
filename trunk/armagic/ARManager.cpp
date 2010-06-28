@@ -85,7 +85,7 @@ void ARManager::drawBackground() {
 
 	driver->draw2DImage(this->cameraTexture_, rect<s32>(0,0,scrnSize.Width,scrnSize.Height), rect<s32>(0,0,imgSize.Width,imgSize.Height));
 }
-/*
+
 void ARManager::fixCamera(irr::scene::ICameraSceneNode* camera) {
 	irr::core::matrix4 projection_matrix;
 
@@ -94,7 +94,7 @@ void ARManager::fixCamera(irr::scene::ICameraSceneNode* camera) {
 	camera->setProjectionMatrix(projection_matrix);
 	camera->setPosition(vector3df(0,0,0));
 	camera->setTarget(vector3df(0,0,1));
-}*/
+}
 
 // THIS IS NOT MY CODE
 // THANKS TO IRRAR
@@ -150,7 +150,7 @@ void ARManager::createProjectionMatrix() {
 	for( i = 0; i < 4; i++ ) 
 		gCparam.mat[1][i] = (gCparam.ysize-1)*(gCparam.mat[2][i]) - gCparam.mat[1][i];
 
-	this->our_argConvGLcpara2( gCparam.mat, gCparam.xsize, gCparam.ysize, AR_GL_CLIP_NEAR, AR_GL_CLIP_FAR, gl_cpara );
+	this->convertGLPara (gCparam.mat, gCparam.xsize, gCparam.ysize, AR_GL_CLIP_NEAR, AR_GL_CLIP_FAR, gl_cpara);
 }
 
 void ARManager::convertGLPara(double cparam[3][4], int width, int height, double gnear, double gfar, float m[16])
