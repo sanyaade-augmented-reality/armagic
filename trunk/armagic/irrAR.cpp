@@ -24,11 +24,7 @@ dimension2di IARManager::beginCamera(char* cparam_filename, char* win32_vconf_fi
 	window_dimensions.Height = 0;
 	
 	/* open the video path */
-#ifdef _WIN32
 	if(arVideoOpen(win32_vconf_filename) < 0) return window_dimensions;
-#else
-	if(arVideoOpen(unix_config_string) < 0) return window_dimensions;
-#endif
 	
 	/* load camera param file */
 	if(arParamLoad(cparam_filename, 1, &(this->wparam)) < 0) return window_dimensions;
@@ -331,8 +327,6 @@ void IARManager::create_projection_matrix(ARParam *cparam, double zoom, int full
 	for( i = 0; i < 4; i++ ) 
 		gCparam.mat[1][i] = (gCparam.ysize-1)*(gCparam.mat[2][i]) - gCparam.mat[1][i];
 	
-	//argConvGLcpara( &gCparam, AR_GL_CLIP_NEAR, AR_GL_CLIP_FAR, gl_cpara );
-	//argConvGLcpara2( param->mat, param->xsize, param->ysize, gnear, gfar, m );
 	this->our_argConvGLcpara2( gCparam.mat, gCparam.xsize, gCparam.ysize, AR_GL_CLIP_NEAR, AR_GL_CLIP_FAR, gl_cpara );
 }
 
