@@ -27,6 +27,7 @@ ARManager::~ARManager() {
 void ARManager::run() {
 	ARUint8* frame = camera_->getFrame();
 	updateCameraTexture(frame);
+	tracker_->loadImage(frame);
 	for (int i = 0; i < nodes_.size(); i++) {
 		CMatrix4<float> matrix;
 		// Reference to node
@@ -47,6 +48,7 @@ void ARManager::run() {
 
 void ARManager::addARSceneNode(ARSceneNode* node) {
 	nodes_.push_back(node);
+	node->getNode()->setScale(irr::core::vector3df(-1.0, -1.0, -1.0));
 }
 
 void ARManager::updateCameraTexture(ARUint8* frame) {

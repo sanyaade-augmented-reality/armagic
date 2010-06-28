@@ -18,7 +18,11 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
 	driver_ = device_->getVideoDriver();
 	smgr_ = device_->getSceneManager();
 	guienv_ = device_->getGUIEnvironment();	
+#ifdef OLD_ENGINE
 	armgr_ = new IARManager(device_);
+#else
+	armgr_ = new ARManager(device_);
+#endif
 
 	setupCamera();
 	numberOfCards_ = loadCards();
@@ -141,9 +145,13 @@ int Match::loadCards() {
 					node->setAnimationSpeed(15);
 					node->setScale(vector3df(scale, scale, scale));
 
-					//ARSceneNode* arnode = new ARSceneNode(device_, marker.c_str(), node);
 					// Bind with artoolkit
+#ifdef OLD_ENGINE
 					armgr_->addARSceneNode(const_cast<char*>(marker.c_str()), node);
+#else
+					ARSceneNode* arnode = new ARSceneNode(device_, marker.c_str(), node);
+					armgr_->addARSceneNode(arnode);
+#endif
 					// Create the card
 					cards_[cardNumber] = new CreatureCard(returnColorEnum(color.c_str()),marker, name,attack,defense,
 						colorlessCost,colorCost, returnAbilityEnum(ability.c_str()), node);
@@ -162,8 +170,10 @@ int Match::loadCards() {
 }
 
 void Match::setupCamera() {
+#ifdef OLD_ENGINE
 	armgr_->beginCamera("../data/camera/camera_para.dat",
 		"../data/camera/WDM_camera_flipV.xml", "-dev=/dev/video0");
+#endif
 	camera_ = smgr_->addCameraSceneNode(0, camPosition_, camTarget_);
 	armgr_->fixCamera(camera_);
 }
