@@ -1,6 +1,5 @@
 #include "Camera.h"
 
-using namespace track;
 
 Camera::Camera(const std::string& videoConfig, const std::string& cparamPath) {
 	ARParam wparam;
@@ -9,11 +8,11 @@ Camera::Camera(const std::string& videoConfig, const std::string& cparamPath) {
 	cparamPath_ = cparamPath;
 	if (arVideoOpen(const_cast<char*>(videoConfig_.c_str())) < 0)
 		throw Exception("arVideoOpen exception");
-	if (arVideoInqSize(&sizex_, &sizey_) < 0)
+	if (arVideoInqSize(&dimensions_.Width, &dimensions_.Height) < 0)
 		throw Exception("arVideoInqSize exception");
 	if (arParamLoad(cparamPath_.c_str(), 1, &wparam) < 0)
 		throw Exception("arParamLoad exception");
-	arParamChangeSize(&wparam, sizex_, sizey_, &cparam_);
+	arParamChangeSize(&wparam, dimensions_.Width, dimensions_.Height, &cparam_);
 	arInitCparam(&cparam_);
 	arParamDisp(&cparam_);
 }
@@ -24,12 +23,9 @@ Camera::~Camera() {
 	argCleanup();
 }
 
-char* Camera::getFrame() const {
-	while ( (frame_ = (char*)arVideoGetImage()) == NULL )
+ARUint8* Camera::getFrame() const {
+	while ( (frame_ = arVideoGetImage()) == NULL )
 		arUtilSleep(2);
-	return frame_;
-}
-
-void Camera::capNext() const {
 	arVideoCapNext();
+	return frame_;
 }

@@ -55,7 +55,7 @@ CreatureCard::Ability Match::returnAbilityEnum(const char* ability) {
 		return CreatureCard::NO_ABILITY;
 }
 
-// This methods read a pre-located XML file which contains all cards and
+// This methods reads XML file which contains all cards and
 // the information to build the virtual objects of them (model, markers, textures...)
 // Returns the total number of cards in the XML file
 int Match::loadCards() {
