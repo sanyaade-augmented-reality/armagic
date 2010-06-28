@@ -1,4 +1,5 @@
 #include "irrAR.h"
+#include <iostream>
 
 using namespace irrAr;
 
@@ -156,50 +157,6 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 	//run ARTK's detection function
 	arDetectMarker(dataPtr, thresh, &marker_info, &marker_num);
 	
-	//check each mutli-pattern
-	for(p=0; p < this->multi_loaded; p++)
-	{
-		int i;
-		double err;
-		double gl_para[16];
-		float glf_para[16];
-		CMatrix4<float> mat;
-		
-		//do the work
-		err = arMultiGetTransMat(marker_info, marker_num, this->multi_config[p]);
-		
-		//was it found?
-		if(err < 0 || err > 100.0) 
-		{
-			this->multi_node[p]->setVisible(0);
-			continue;
-		}
-		
-		//being the matrix process
-		/*
-		//incase you want to take advantage of this (ripped from multiTest.c)...
-		for( i = 0; i < config->marker_num; i++ ) {
-			if( config->marker[i].visible >= 0 ) draw( config->trans, config->marker[i].trans, 0 );
-			else                                 draw( config->trans, config->marker[i].trans, 1 );
-		}*/
-		
-		this->our_convert_trans_para(this->multi_config[p]->trans, gl_para);
-		for(i=0;i<16;i++) glf_para[i] = (float)gl_para[i];
-		
-		mat.setM(glf_para);
-	
-		//vector3d<f32> scale_vec = mat.getScale();
-		vector3d<f32> rot_vec = mat.getRotationDegrees();
-		vector3d<f32> pos_vec = mat.getTranslation();
-		
-		rot_vec.X -= 90;
-		
-		multi_node[p]->setRotation(rot_vec);
-		multi_node[p]->setPosition(pos_vec);
-		
-		multi_node[p]->setVisible(1);
-	}
-	
 	//check each pattern
 	for(p=0; p < this->patt_loaded; p++)
 	{
@@ -220,9 +177,9 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 			}
 			
 		//was it found?
-		if(k == -1) 
+		if(k == -1)
 		{
-			patt_node[p]->setVisible(0);
+			patt_node[p]->setVisible(false);
 			continue;
 		}
 		
@@ -242,8 +199,7 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 		
 		patt_node[p]->setRotation(rot_vec);
 		patt_node[p]->setPosition(pos_vec);
-		
-		patt_node[p]->setVisible(1);
+		patt_node[p]->setVisible(true);
 	}
 }
 

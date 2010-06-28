@@ -186,6 +186,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ARManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ARSceneNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Camera.h"
 				>
 			</File>
@@ -253,6 +261,14 @@
 			>
 			<File
 				RelativePath=".\AboutMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ARManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ARSceneNode.cpp"
 				>
 			</File>
 			<File

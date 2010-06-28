@@ -56,8 +56,8 @@ private:
 	
 	//patterns
 	int patt_id[MAX_PATTERNS];
-	ISceneNode* patt_node[MAX_PATTERNS];
 	ARMultiMarkerInfoT* multi_config[MAX_MULTIS];
+	ISceneNode* patt_node[MAX_PATTERNS];
 	ISceneNode* multi_node[MAX_MULTIS];
 	int patt_loaded;
 	int multi_loaded;
