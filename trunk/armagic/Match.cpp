@@ -15,10 +15,10 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
 			 : device_(device), soundEngine_(soundEngine),
 			 eventHandler_(eventHandler)
 {
-	armgr_ = new IARManager(device_);
 	driver_ = device_->getVideoDriver();
 	smgr_ = device_->getSceneManager();
 	guienv_ = device_->getGUIEnvironment();	
+	armgr_ = new IARManager(device_);
 
 	setupCamera();
 	numberOfCards_ = loadCards();
@@ -140,8 +140,10 @@ int Match::loadCards() {
 					node->setMaterialFlag(video::EMF_LIGHTING, false);
 					node->setAnimationSpeed(15);
 					node->setScale(vector3df(scale, scale, scale));
+
+					//ARSceneNode* arnode = new ARSceneNode(device_, marker.c_str(), node);
 					// Bind with artoolkit
-					armgr_->addARSceneNode(marker.c_str(), node);
+					armgr_->addARSceneNode(const_cast<char*>(marker.c_str()), node);
 					// Create the card
 					cards_[cardNumber] = new CreatureCard(returnColorEnum(color.c_str()),marker, name,attack,defense,
 						colorlessCost,colorCost, returnAbilityEnum(ability.c_str()), node);
@@ -175,9 +177,7 @@ void Match::mainLoop() {
 
 	while (isRunning()) {
 		driver_->beginScene(true, true, SColor(255,100,101,140));
-		//make movements and bring in new image
 		armgr_->run();
-		//draw the background image centered and scaled
 		armgr_->drawBackground();
 
 		// Event handling

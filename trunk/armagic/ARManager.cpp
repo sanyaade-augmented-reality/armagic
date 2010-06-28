@@ -1,5 +1,10 @@
 #include "ARManager.h"
 
+#ifdef __DEBUG
+#include <iostream>
+using namespace std;
+#endif
+
 using namespace irr::core;
 using namespace irr::scene;
 
@@ -21,6 +26,7 @@ ARManager::~ARManager() {
 
 void ARManager::run() {
 	ARUint8* frame = camera_->getFrame();
+	updateCameraTexture(frame);
 	for (int i = 0; i < nodes_.size(); i++) {
 		CMatrix4<float> matrix;
 		// Reference to node
@@ -37,7 +43,6 @@ void ARManager::run() {
 			node->setVisible(false);
 		}
 	}
-
 }
 
 void ARManager::addARSceneNode(ARSceneNode* node) {

@@ -10,6 +10,8 @@ class ARSceneNode{
 public:
 	ARSceneNode(irr::IrrlichtDevice* device, const std::string& patt,
 		const std::string& model, const std::string& texture, const float scale);
+	ARSceneNode(irr::IrrlichtDevice* device, const std::string& patt,
+		irr::scene::IAnimatedMeshSceneNode* node);
 	~ARSceneNode();
 
 	irr::scene::IAnimatedMeshSceneNode* getNode() const { return node_; }
