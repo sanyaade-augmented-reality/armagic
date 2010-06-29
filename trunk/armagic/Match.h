@@ -1,7 +1,7 @@
 #ifndef ARMAGIC_MATCH_H_
 #define ARMAGIC_MATCH_H_
 
-#define OLD_ENGINE
+//#define OLD_ENGINE
 
 #include <vector>
 #include "irrAR.h"
@@ -26,8 +26,6 @@ private:
 	int numberOfCards_;
 	// Vector of cards, with associated model and marker
 	std::vector<Card*> cards_;
-	// Vector of nodes
-	std::vector<irr::scene::IAnimatedMeshSceneNode*> sceneNodes_;
 	// Camera stuff
 	irr::core::vector3df camPosition_;
 	irr::core::vector3df camTarget_;
@@ -56,6 +54,7 @@ private:
 	CreatureCard::Ability returnAbilityEnum(const char* ability);
 
 	void setupCamera();
+	void drawAll();
 };
 
 #endif
