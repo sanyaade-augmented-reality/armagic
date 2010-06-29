@@ -5,8 +5,9 @@ using namespace irr::core;
 ARSceneNode::ARSceneNode(irr::IrrlichtDevice* device, const std::string& patt,
 						 const std::string& model, const std::string& texture, const float scale)
 {
-	driver_ = device->getVideoDriver();
-	smgr_ = device->getSceneManager();
+	device_ = device;
+	driver_ = device_->getVideoDriver();
+	smgr_ = device_->getSceneManager();
 
 	// Node
 	node_ = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh(model.c_str()));

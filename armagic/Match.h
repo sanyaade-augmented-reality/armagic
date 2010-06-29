@@ -1,7 +1,7 @@
 #ifndef ARMAGIC_MATCH_H_
 #define ARMAGIC_MATCH_H_
 
-//#define OLD_ENGINE
+#define IRRAR_ENGINE
 
 #include <vector>
 #include "irrAR.h"
@@ -31,7 +31,7 @@ private:
 	irr::core::vector3df camTarget_;
 	irr::scene::ICameraSceneNode* camera_;
 	// IrrAr stuff
-#ifdef OLD_ENGINE
+#ifdef IRRAR_ENGINE
 	irrAr::IARManager* armgr_;
 #else
 	ARManager* armgr_;
