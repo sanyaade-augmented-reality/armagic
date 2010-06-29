@@ -91,7 +91,6 @@ int Match::loadCards() {
 		if (xml->getNodeType() == EXN_ELEMENT) {
 			if (strcmp("cards", xml->getNodeName()) == 0) {
 				numberOfCards = xml->getAttributeValueAsInt("numberOfCards");
-				sceneNodes_.resize(numberOfCards);
 				cards_.resize(numberOfCards);
 
 				numberOfCreatures = xml->getAttributeValueAsInt("creatureCards");
@@ -182,20 +181,24 @@ bool Match::isRunning() const {
 	return device_->run();
 }
 
+void Match::drawAll() {
+	armgr_->drawBackground();
+	smgr_->drawAll();
+	guienv_->drawAll();
+}
+
 void Match::mainLoop() {
 	soundEngine_->play2D("../data/sounds/music/medievalpilgrim.mp3");
 
 	while (isRunning()) {
 		driver_->beginScene(true, true, SColor(255,100,101,140));
 		armgr_->run();
-		armgr_->drawBackground();
 
 		// Event handling
 		if (eventHandler_->IsKeyDown(KEY_ESCAPE))
 			return;
 
-		smgr_->drawAll();
-		guienv_->drawAll();
+		drawAll();
 		driver_->endScene();
 	}
 }
