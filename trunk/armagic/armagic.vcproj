@@ -238,6 +238,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MatchManager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Menu.h"
 				>
 			</File>
@@ -313,6 +317,10 @@
 			</File>
 			<File
 				RelativePath=".\Match.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MatchManager.cpp"
 				>
 			</File>
 			<File

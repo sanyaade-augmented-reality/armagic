@@ -23,7 +23,8 @@ private:
 	std::string pattPath_;
 	int pattId_;
 	irr::scene::IAnimatedMeshSceneNode* node_;
-
+	
+	irr::IrrlichtDevice* device_;
 	irr::scene::ISceneManager* smgr_;
 	irr::video::IVideoDriver* driver_;
 };

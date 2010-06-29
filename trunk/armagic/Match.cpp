@@ -18,7 +18,7 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
 	driver_ = device_->getVideoDriver();
 	smgr_ = device_->getSceneManager();
 	guienv_ = device_->getGUIEnvironment();	
-#ifdef OLD_ENGINE
+#ifdef IRRAR_ENGINE
 	armgr_ = new IARManager(device_);
 #else
 	armgr_ = new ARManager(device_);
@@ -145,7 +145,7 @@ int Match::loadCards() {
 					node->setScale(vector3df(scale, scale, scale));
 
 					// Bind with artoolkit
-#ifdef OLD_ENGINE
+#ifdef IRRAR_ENGINE
 					armgr_->addARSceneNode(const_cast<char*>(marker.c_str()), node);
 #else
 					ARSceneNode* arnode = new ARSceneNode(device_, marker.c_str(), node);
@@ -169,7 +169,7 @@ int Match::loadCards() {
 }
 
 void Match::setupCamera() {
-#ifdef OLD_ENGINE
+#ifdef IRRAR_ENGINE
 	armgr_->beginCamera("../data/camera/camera_para.dat",
 		"../data/camera/WDM_camera_flipV.xml", "-dev=/dev/video0");
 #endif
