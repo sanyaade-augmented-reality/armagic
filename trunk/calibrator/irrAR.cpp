@@ -152,7 +152,6 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 	
 	//run ARTK's detection function
 	arDetectMarker(dataPtr, thresh, &marker_info, &marker_num);
-	//arDetectMarkerLite(dataPtr, thresh, &marker_info,&marker_num);
 	
 	//check each pattern
 	for(p=0; p < this->patt_loaded; p++)
@@ -182,7 +181,6 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 		
 		//begin the matrix process
 		arGetTransMat(&marker_info[k], patt_center, patt_width, patt_trans);
-		//arGetTransMatCont(&marker_info[k],patt_trans, patt_center, patt_width, patt_trans);
 		
 		this->our_convert_trans_para(patt_trans, gl_para);
 		for(i=0;i<16;i++) glf_para[i] = (float)gl_para[i];

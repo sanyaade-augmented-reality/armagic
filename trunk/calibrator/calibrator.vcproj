@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="&quot;D:\Users\Pedro\Documents\Visual Studio 2008\Projects\ARToolKit\include&quot;;&quot;D:\Users\Pedro\Documents\Visual Studio 2008\Projects\irrlicht-1.7.1\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -60,7 +61,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="libARd.lib libARMultid.lib libARgsubd.lib libARvideod.lib opengl32.lib glu32.lib glut32.lib Irrlicht.lib "
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="&quot;D:\Users\Pedro\Documents\Visual Studio 2008\Projects\ARToolKit\lib&quot;;&quot;D:\Users\Pedro\Documents\Visual Studio 2008\Projects\irrlicht-1.7.1\lib\Win32-visualstudio&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -170,12 +173,24 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath=".\irrAR.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\main.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\irrAR.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
