@@ -10,10 +10,8 @@ using namespace io;
 using namespace gui;
 using namespace std;
 
-Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
-			 EventHandler* eventHandler)
-			 : device_(device), soundEngine_(soundEngine),
-			 eventHandler_(eventHandler)
+Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,	EventHandler* eventHandler)
+			 : device_(device), soundEngine_(soundEngine), eventHandler_(eventHandler)
 {
 	driver_ = device_->getVideoDriver();
 	smgr_ = device_->getSceneManager();
@@ -26,6 +24,10 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,
 
 	setupCamera();
 	numberOfCards_ = loadCards();
+
+	player_ = 0;
+	BasicState *bs =  new BasicState(cards_, player_);
+	mstate_ = bs;
 }
 
 Match::~Match() {
@@ -193,6 +195,27 @@ void Match::mainLoop() {
 	while (isRunning()) {
 		driver_->beginScene(true, true, SColor(255,100,101,140));
 		armgr_->run();
+
+		bool stateSwitch = false;
+
+		// check for stateswitch
+
+		if (stateSwitch) {
+			switch (mstate_->run()) {
+				case MatchState::STATE_BAS:
+					delete mstate_;
+					mstate_ = new BasicState(cards_, !player_);
+					break;
+				case MatchState::STATE_ATT:
+					delete mstate_;
+					mstate_ = new AttackState(cards_, player_);
+					break;
+				case MatchState::STATE_RES:
+					delete mstate_;
+					mstate_ = new ResolveState(cards_, player_);
+					break;
+			}
+		}
 
 		// Event handling
 		if (eventHandler_->IsKeyDown(KEY_ESCAPE))

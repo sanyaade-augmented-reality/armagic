@@ -13,6 +13,10 @@
 #include "ARManager.h"
 #include "ARSceneNode.h"
 
+#include "BasicState.h"
+#include "AttackState.h"
+#include "ResolveState.h"
+
 class Match {
 public:
 	Match(irr::IrrlichtDevice* device, irrklang::ISoundEngine* soundEngine,
@@ -36,6 +40,10 @@ private:
 #else
 	ARManager* armgr_;
 #endif
+
+	// State Machine
+	int player_;
+	MatchState* mstate_;
 
 	// Irrlicht stuff
 	irr::IrrlichtDevice* device_;

@@ -194,6 +194,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AttackState.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BasicState.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Camera.h"
 				>
 			</File>
@@ -242,11 +250,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MatchState.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Menu.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Player.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ResolveState.h"
 				>
 			</File>
 			<File
@@ -273,6 +289,14 @@
 			</File>
 			<File
 				RelativePath=".\ARSceneNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\AttackState.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BasicState.cpp"
 				>
 			</File>
 			<File
@@ -324,11 +348,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MatchState.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Menu.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Player.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ResolveState.cpp"
 				>
 			</File>
 			<File
