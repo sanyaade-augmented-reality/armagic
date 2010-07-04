@@ -18,6 +18,8 @@ IARManager* armgr;
 ofstream out;
 vector3df pos;
 
+int asd = 0;
+
 class MyEventReceiver : public IEventReceiver
 {
 	public:
@@ -32,7 +34,7 @@ class MyEventReceiver : public IEventReceiver
 						device->closeDevice();
 						return true;
 					default:
-						cout << "asd" << endl;
+						cout << asd++ << endl;
 						out << pos.X << " " << pos.Y << " " << pos.Z << endl;
 						break;
 				}
@@ -88,11 +90,11 @@ int main()
 	cout << "\nRight Down";
 	cout << "\nRight Up";
 	
-	cout << "FIGHT";
+	cout << "\nFIGHT";
 	cout << "\nLeft Down";
 	cout << "\nLeft Up";
 	cout << "\nRight Down";
-	cout << "\nRight Up";
+	cout << "\nRight Up\n";
 
 	while(device->run())
 	{
