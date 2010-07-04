@@ -151,7 +151,8 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 	if(!this->patt_loaded) return;
 	
 	//run ARTK's detection function
-	arDetectMarker(dataPtr, thresh, &marker_info, &marker_num);
+	//arDetectMarker(dataPtr, thresh, &marker_info, &marker_num);
+	arDetectMarkerLite(dataPtr, thresh, &marker_info,&marker_num);
 	
 	//check each pattern
 	for(p=0; p < this->patt_loaded; p++)
