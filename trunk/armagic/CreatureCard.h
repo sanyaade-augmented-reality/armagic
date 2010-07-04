@@ -26,21 +26,18 @@ public:
 	inline int getColorCost() const { return colorCost_; }
 	inline int getColorlessCost() const { return colorlessCost_; }
 
-	inline int getAttackModifier() const { return attackModifier_; }
-	inline void setAttackModifier(const int val) { attackModifier_ = val; }
-	inline int getDefenseModifier() const { return defenseModifier_; }
-	inline void setDefenseModifier(const int val) { defenseModifier_ = val; }
-
-
+	inline bool isAttacking() const { return attacking_; }
+	inline void setAttacking(const bool a) { attacking_ = a; }
 
 private:
 	Ability ability_;
 	int attack_;
 	int defense_;
-	int attackModifier_;
-	int defenseModifier_;
 	int colorlessCost_;
 	int colorCost_;
+
+	bool attacking_;
+	
 };
 
 #endif

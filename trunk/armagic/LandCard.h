@@ -10,11 +10,13 @@ public:
 
 	virtual ~LandCard();
 
-	void use();
-	void reset();
+	inline bool isActive() const { return active_; }
+	inline void activate() { active_ = true; }
+	inline void deactivate() { active_ = false; }
+	inline void setActive(const bool a) { active_ = a; }
 
 private:
-	bool used_;
+	bool active_;
 };
 
 #endif

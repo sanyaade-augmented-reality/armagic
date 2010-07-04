@@ -28,21 +28,22 @@ public:
 
 	inline Color getColor() { return color_; }
 	inline std::string getMarker() const { return marker_; }
-	//inline std::string getModel() const { return model_; }
-	//inline std::string getTexture() const { return texture_; }
 	inline std::string getName() const { return name_; }
-	//inline double getScale() const { return scale_; }
-	inline core::vector3df getPosition() const { return position_; }
+	inline core::vector3df getPosition() const { return node_->getAbsolutePosition(); }
 	inline Type getType() const { return type_; }
 	inline irr::scene::IAnimatedMeshSceneNode* getNode() const { return node_; }
+	inline bool isVisible() const { return visible_; }
+	inline void setVisible(const bool v) { visible_ = v; }
 
 protected:
 	Color color_;
 	Type type_;
 	std::string name_;
-	std::string marker_;
 
-	irr::core::vector3df position_;
+	std::string marker_;
+	bool visible_;
+
+
 	irr::scene::IAnimatedMeshSceneNode* node_;
 };
 
