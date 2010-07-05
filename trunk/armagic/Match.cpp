@@ -1,6 +1,11 @@
 #include "Match.h"
 #include <irrXML.h>
 
+#include <iostream>
+using namespace std;
+
+#include <fstream>
+
 using namespace irrAr;
 using namespace irrklang;
 using namespace core;
@@ -24,6 +29,7 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,	EventHandler* ev
 
 	setupCamera();
 	numberOfCards_ = loadCards();
+	getArenaDim();
 
 	player_ = 0;
 	BasicState *bs =  new BasicState(cards_, player_);
@@ -195,8 +201,27 @@ void Match::drawAll() {
 	guienv_->drawAll();
 }
 
-#include <iostream>
-using namespace std;
+bool Match::isFighting(const irr::core::vector3df& vec) const {
+	const bool x = vec.X > adim_.fld.X && vec.X < adim_.fru.X;
+	const bool y = vec.Y > adim_.flu.Y && vec.Y < adim_.frd.Y;
+	return x && y;
+}
+
+void Match::getArenaDim() {
+	std::ifstream in;
+	in.open("../data/arconfig.txt");
+	
+	in >> adim_.ld.X >> adim_.ld.Y >> adim_.ld.Z
+		>> adim_.lu.X >> adim_.lu.Y >> adim_.lu.Z
+		>> adim_.rd.X >> adim_.rd.Y >> adim_.rd.Z
+		>> adim_.ru.X >> adim_.ru.Y >> adim_.ru.Z
+		>> adim_.fld.X >> adim_.fld.Y >> adim_.fld.Z
+		>> adim_.flu.X >> adim_.flu.Y >> adim_.flu.Z
+		>> adim_.frd.X >> adim_.frd.Y >> adim_.frd.Z
+		>> adim_.fru.X >> adim_.fru.Y >> adim_.fru.Z;
+
+	in.close();
+}
 
 void Match::mainLoop() {
 	soundEngine_->play2D("../data/sounds/music/medievalpilgrim.mp3");
@@ -207,9 +232,17 @@ void Match::mainLoop() {
 		armgr_->run();
 
 		bool stateSwitch = false;
+		/*
+		cout << adim_.fld << " " << adim_.frd << endl;
+		cout << adim_.flu << " " << adim_.fru<< endl;
+		getchar();*/
 		
 		for (int i = 0; i < cards_.size(); i++) {
-			if (cards_[i]->getNode()->isVisible()) cout << cards_[i]->getName() << endl;
+			if (cards_[i]->getNode()->isVisible()) {
+				if (isFighting(cards_[i]->getNode()->getAbsolutePosition())) {
+					cout << "FIGHT" << endl;
+				}
+			}
 		}
 
 		cout << endl;
