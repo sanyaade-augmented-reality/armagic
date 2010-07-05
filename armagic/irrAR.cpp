@@ -191,8 +191,8 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 		//was it found?
 		if (k == -1)
 		{
-			//patt_node[p]->setVisible(false);
-			cards_[p]->getNode()->setVisible(false);
+			patt_node[p]->setVisible(false);
+			//cards_[p]->getNode()->setVisible(false);
 			continue;
 		}
 		
@@ -213,8 +213,8 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 		
 		patt_node[p]->setRotation(rot_vec);
 		patt_node[p]->setPosition(pos_vec);
-		//patt_node[p]->setVisible(true);
-		cards_[p]->getNode()->setVisible(true);
+		patt_node[p]->setVisible(true);
+		//cards_[p]->getNode()->setVisible(true);
 	}
 }
 

@@ -274,6 +274,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\StateSwitcher.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Tracker.h"
 				>
 			</File>
@@ -369,6 +373,10 @@
 			</File>
 			<File
 				RelativePath=".\Splash.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\StateSwitcher.cpp"
 				>
 			</File>
 			<File
