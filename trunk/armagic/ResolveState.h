@@ -5,7 +5,7 @@
 
 class ResolveState : public MatchState {
 public:
-	ResolveState(std::vector<Card*>& cards, const int player);
+	ResolveState(std::vector<Card*>& cards, const int player, ArenaDim* adim);
 	~ResolveState();
 
 	virtual int run();

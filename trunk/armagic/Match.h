@@ -13,13 +13,11 @@
 #include "ARManager.h"
 #include "ARSceneNode.h"
 
+#include "ArenaDimensions.h"
+
 #include "BasicState.h"
 #include "AttackState.h"
 #include "ResolveState.h"
-
-typedef struct {
-	irr::core::vector3df ld, lu, rd, ru, fld, flu, frd, fru;
-} ArenaDim;
 
 class Match {
 public:

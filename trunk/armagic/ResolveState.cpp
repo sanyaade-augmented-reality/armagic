@@ -1,7 +1,7 @@
 #include "ResolveState.h"
 
-ResolveState::ResolveState(std::vector<Card*> &cards, const int player)
-	: MatchState(cards, player)
+ResolveState::ResolveState(std::vector<Card*> &cards, const int player, ArenaDim* adim)
+	: MatchState(cards, player, adim)
 { }
 
 ResolveState::~ResolveState() { }

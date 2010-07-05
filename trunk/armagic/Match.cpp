@@ -32,7 +32,7 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,	EventHandler* ev
 	getArenaDim();
 
 	player_ = 0;
-	BasicState *bs =  new BasicState(cards_, player_);
+	BasicState *bs =  new BasicState(cards_, player_, &adim_);
 	mstate_ = bs;
 }
 
@@ -201,12 +201,6 @@ void Match::drawAll() {
 	guienv_->drawAll();
 }
 
-bool Match::isFighting(const irr::core::vector3df& vec) const {
-	const bool x = vec.X > adim_.fld.X && vec.X < adim_.fru.X;
-	const bool y = vec.Y > adim_.flu.Y && vec.Y < adim_.frd.Y;
-	return x && y;
-}
-
 void Match::getArenaDim() {
 	std::ifstream in;
 	in.open("../data/arconfig.txt");
@@ -232,18 +226,6 @@ void Match::mainLoop() {
 		armgr_->run();
 
 		bool stateSwitch = false;
-		/*
-		cout << adim_.fld << " " << adim_.frd << endl;
-		cout << adim_.flu << " " << adim_.fru<< endl;
-		getchar();*/
-		
-		for (int i = 0; i < cards_.size(); i++) {
-			if (cards_[i]->getNode()->isVisible()) {
-				if (isFighting(cards_[i]->getNode()->getAbsolutePosition())) {
-					cout << "FIGHT" << endl;
-				}
-			}
-		}
 
 		cout << endl;
 
@@ -254,15 +236,15 @@ void Match::mainLoop() {
 			switch (mstate_->run()) {
 				case MatchState::STATE_BAS:
 					delete mstate_;
-					mstate_ = new BasicState(cards_, !player_);
+					mstate_ = new BasicState(cards_, !player_, &adim_);
 					break;
 				case MatchState::STATE_ATT:
 					delete mstate_;
-					mstate_ = new AttackState(cards_, player_);
+					mstate_ = new AttackState(cards_, player_, &adim_);
 					break;
 				case MatchState::STATE_RES:
 					delete mstate_;
-					mstate_ = new ResolveState(cards_, player_);
+					mstate_ = new ResolveState(cards_, player_, &adim_);
 					break;
 			}
 		}

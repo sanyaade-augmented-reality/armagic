@@ -5,7 +5,7 @@
 
 class BasicState : public MatchState {
 public:
-	BasicState(std::vector<Card*>& cards, const int player);
+	BasicState(std::vector<Card*>& cards, const int player, ArenaDim* adim);
 	~BasicState();
 
 	virtual int run();

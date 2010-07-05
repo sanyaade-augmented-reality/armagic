@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ArenaDimensions.h"
+				>
+			</File>
+			<File
 				RelativePath=".\ARManager.h"
 				>
 			</File>

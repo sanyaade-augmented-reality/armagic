@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Card.h"
+#include "ArenaDimensions.h"
 
 class MatchState {
 public:
@@ -15,14 +16,17 @@ public:
 		STATE_NONE
 	};
 
-	MatchState(std::vector<Card*>& cards, const int player);
+	MatchState(std::vector<Card*>& cards, const int player, ArenaDim* adim);
 	virtual ~MatchState();
 
 	virtual int run() = 0;
+	bool isFighting(const irr::core::vector3df& vec) const;
+	int whichPlayerCard(const irr::core::vector3df& vec);
 
 protected:
 	std::vector<Card*>& cards_;
 	int player_;
+	ArenaDim* adim_;
 };
 
 #endif
