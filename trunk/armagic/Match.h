@@ -18,6 +18,7 @@
 #include "BasicState.h"
 #include "AttackState.h"
 #include "ResolveState.h"
+#include "StateSwitcher.h"
 
 class Match {
 public:
@@ -48,6 +49,7 @@ private:
 	// State Machine
 	int player_;
 	MatchState* mstate_;
+	StateSwitcher* ssw_;
 
 	// Irrlicht stuff
 	irr::IrrlichtDevice* device_;

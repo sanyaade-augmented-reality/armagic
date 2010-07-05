@@ -34,26 +34,8 @@ public:
 	inline core::vector3df getPosition() const { return node_->getAbsolutePosition(); }
 	inline Type getType() const { return type_; }
 	inline irr::scene::IAnimatedMeshSceneNode* getNode() const { return node_; }
-	inline bool isVisible() const { return visible_; }
-	inline void setVisible(const bool v) {
-		visible_ = v;
-		node_->setVisible(v);
-	}
-	inline void setPosition(irr::core::vector3df pos) {
-		/*static int not = 0;
-		positions_.push_back(pos);
-		if (positions_.size() == 5)
-			positions_.erase(positions_.begin());
-		float x = 0, y = 0, z = 0;
-		for (int i = 0; i < positions_.size(); i++) {
-			x += positions_[i].X;
-			y += positions_[i].Y;
-			z += positions_[i].Z;
-		}
-		node_->setPosition(vector3df(x, y, z));*/
-		node_->setPosition(pos);
-	}
-	inline void setDirection(vector3df dir) { node_->setRotation(dir); }
+	inline bool isInGame() const { return inGame_; }
+	inline void setInGame(const bool b) { inGame_ = b; }
 
 protected:
 	Color color_;
@@ -61,7 +43,7 @@ protected:
 	std::string name_;
 
 	std::string marker_;
-	bool visible_;
+	bool inGame_;
 
 	irr::scene::IAnimatedMeshSceneNode* node_;
 };

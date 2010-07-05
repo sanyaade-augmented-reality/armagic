@@ -34,6 +34,28 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,	EventHandler* ev
 	player_ = 0;
 	BasicState *bs =  new BasicState(cards_, player_, &adim_);
 	mstate_ = bs;
+
+	const char* patt_a = "../data/markers/patt.t";
+	const char* patt_b = "../data/markers/patt.l";
+	IAnimatedMeshSceneNode* na = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh("../data/models/wolf.3ds"));
+	na->setMaterialTexture(0,driver_->getTexture("../data/models/wolf.jpg"));
+	na->setRotation(vector3df(0,180,0));
+	na->setMaterialFlag(video::EMF_LIGHTING, false);
+	na->setAnimationSpeed(15);
+	na->setScale(vector3df(10, 10, 10));
+
+	IAnimatedMeshSceneNode* nb = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh("../data/models/wolf.3ds"));
+	nb->setMaterialTexture(0,driver_->getTexture("../data/models/wolf.jpg"));
+	nb->setRotation(vector3df(0,180,0));
+	nb->setMaterialFlag(video::EMF_LIGHTING, false);
+	nb->setAnimationSpeed(15);
+	nb->setScale(vector3df(10, 10, 10));
+	Card* ssa = new Card(Card::COLOR_WHITE, patt_a, "ampulheta_a", na);
+	Card* ssb = new Card(Card::COLOR_WHITE, patt_b, "ampulheta_b", nb);
+
+	ssw_ = new StateSwitcher(ssa, ssb);
+	armgr_->addARSceneNode(ssa);
+	armgr_->addARSceneNode(ssb);
 }
 
 Match::~Match() {
@@ -225,12 +247,23 @@ void Match::mainLoop() {
 
 		armgr_->run();
 
+		static int laststate = 0;
 		bool stateSwitch = false;
 
-		cout << endl;
+		int cs = ssw_->whichSide();
+		if (cs != -1) {
+			if (cs != laststate) {
+				laststate = cs;
+				stateSwitch = true;
+			}
+			else
+				stateSwitch = false;
+		}
+
+		if (stateSwitch) cout << "MAH OE" << endl;
 
 
-		// check for stateswitch
+	//	cout << ssw_->whichSide() << endl;
 
 		if (stateSwitch) {
 			switch (mstate_->run()) {
