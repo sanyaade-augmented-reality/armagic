@@ -1,9 +1,13 @@
 #include "BasicState.h"
 
+#include <iostream>
+
+using namespace std;
+
 BasicState::BasicState(std::vector<Card*> &cards, const int player, ArenaDim* adim)
 	: MatchState(cards, player, adim)
 {
-
+	cout << "Basic state, player " << player << endl;
 }
 
 BasicState::~BasicState() { }
