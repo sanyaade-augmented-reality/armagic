@@ -1,8 +1,13 @@
 #include "AttackState.h"
 
+#include <iostream>
+
+using namespace std;
+
 AttackState::AttackState(std::vector<Card*> &cards, const int player, ArenaDim* adim)
 	: MatchState(cards, player, adim)
 {
+	cout << "Attack state, player :" << player << endl;
 
 }
 
@@ -21,5 +26,6 @@ int AttackState::run() {
 			}
 		}
 	}*/
+	cout << "Prepare-se para o ataque" << endl;
 	return MatchState::STATE_RES;
 }

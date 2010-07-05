@@ -270,6 +270,7 @@ void Match::mainLoop() {
 				case MatchState::STATE_BAS:
 					delete mstate_;
 					mstate_ = new BasicState(cards_, !player_, &adim_);
+					player_ = !player_;
 					break;
 				case MatchState::STATE_ATT:
 					delete mstate_;
