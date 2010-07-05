@@ -137,7 +137,7 @@ int Match::loadCards() {
 			}
 
 			if(isCardRead) {
-				if(isCreature) {
+				if (isCreature) {
 					// Create a node
 					IAnimatedMeshSceneNode* node = smgr_->addAnimatedMeshSceneNode(smgr_->getMesh(model.c_str()));
 					node->setMaterialTexture(0,driver_->getTexture(texture.c_str()));
@@ -146,19 +146,25 @@ int Match::loadCards() {
 					node->setAnimationSpeed(15);
 					node->setScale(vector3df(scale, scale, scale));
 
+					// Create the card
+					cards_[cardNumber] = new CreatureCard(returnColorEnum(color.c_str()), marker, name, attack, defense,
+						colorlessCost, colorCost, returnAbilityEnum(ability.c_str()), node);
+
+					std::string s = cards_[cardNumber]->getMarker();
+					isCardRead = false;
+
 					// Bind with artoolkit
 #ifdef IRRAR_ENGINE
-					armgr_->addARSceneNode(const_cast<char*>(marker.c_str()), node);
+					//armgr_->addARSceneNode(marker.c_str(), node);
+					armgr_->addARSceneNode(cards_[cardNumber]);
 #else
 					ARSceneNode* arnode = new ARSceneNode(device_, marker.c_str(), node);
 					armgr_->addARSceneNode(arnode);
 #endif
-					// Create the card
-					cards_[cardNumber] = new CreatureCard(returnColorEnum(color.c_str()),marker, name,attack,defense,
-						colorlessCost,colorCost, returnAbilityEnum(ability.c_str()), node);
-					isCardRead = false;
+
 				}
-				else {
+				else
+				{
 					//Instantiate the lands
 					cards_[cardNumber] = new LandCard(returnColorEnum(color.c_str()), marker, "Land", NULL);
 
@@ -189,14 +195,25 @@ void Match::drawAll() {
 	guienv_->drawAll();
 }
 
+#include <iostream>
+using namespace std;
+
 void Match::mainLoop() {
 	soundEngine_->play2D("../data/sounds/music/medievalpilgrim.mp3");
 
 	while (isRunning()) {
 		driver_->beginScene(true, true, SColor(255,100,101,140));
+
 		armgr_->run();
 
 		bool stateSwitch = false;
+		
+		for (int i = 0; i < cards_.size(); i++) {
+			if (cards_[i]->getNode()->isVisible()) cout << cards_[i]->getName() << endl;
+		}
+
+		cout << endl;
+
 
 		// check for stateswitch
 
