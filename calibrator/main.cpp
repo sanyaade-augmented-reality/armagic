@@ -1,4 +1,4 @@
-#include "../armagic/irrar.h"
+#include "irrar.h"
 
 #include <iostream>
 #include <fstream>

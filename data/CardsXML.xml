@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<cards numberOfCards="10" creatureCards="7" landCards="3">
+<cards numberOfCards="7" creatureCards="7" landCards="0">
   <!-- Creatures: seven creatures using makers hiro, simple1, simple2, kanji, A, B and C respectively.-->
   <card name="Dwarf" cardNumber="0" cardType="creature">
     <model value="../data/models/dwarf.x"/>
@@ -22,7 +22,7 @@
   <card name="Dino" cardNumber="2" cardType="creature">
     <model value="../data/models/dino.3ds"/>
     <texture value="../data/models/dino.jpg"/>
-    <marker value="../data/markers/patt.simple1"/>
+    <marker value="../data/markers/patt.sa"/>
     <scale value="1"/>
     <colors value="red"/>
     <ability value="TRA"/>
@@ -31,7 +31,7 @@
   <card name="Sydney" cardNumber="3" cardType="creature">
     <model value="../data/models/sydney.md2" />
     <texture value="../data/models/sydney.bmp" />
-    <marker value="../data/markers/patt.simple2" />
+    <marker value="../data/markers/patt.sb" />
     <scale value="2.5"/>
     <colors value="black"/>
     <ability value="INI"/>
@@ -63,33 +63,5 @@
     <colors value="black"/>
     <ability value="FLY"/>
     <registers colorless="3" green="0" red="1" blue="0" white="0" black="0" power="4" toughness="4"/>
-  </card>
-  <!-- Lands: Three land cards (mountain, forest and swamp) using markers D, G and F, respectively.-->
-  <card name="Moutain" cardNumber="7" cardType="land">
-    <model value="" />
-    <texture value="../data/lands/red1.jpg" />
-    <marker value="../data/markers/patt.d" />
-    <scale value="30">
-    <colors value="red"/>
-    <ability value=""/>
-    <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
-  </card>
-  <card name="Forest" cardNumber="8" cardType="land">
-    <model value="" />
-    <texture value="../data/lands/green1.jpg" />
-    <marker value="../data/markers/patt.g" />
-    <scale value="30"/>
-    <colors value="green"/>
-    <ability value=""/>
-    <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
-  </card>
-  <card name="Swamp" cardNumber="9" cardType="land">
-    <model value="" />
-    <texture value="../data/lands/black1.jpg" />
-    <marker value="../data/markers/patt.f" />
-    <scale value="30"/>
-    <colors value="black"/>
-    <ability value=""/>
-    <registers colorless="0" green="0" red="0" blue="0" white="0" black="0" power="0" toughness="0"/>
   </card>
 </cards>

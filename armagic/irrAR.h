@@ -7,6 +7,9 @@
 #include <AR/ar.h>
 #include <AR/arMulti.h>
 
+#include "Card.h"
+#include <vector>
+
 //I'm lazy
 using namespace irr;
 
@@ -26,7 +29,8 @@ public:
 	~IARManager();
 	
 	dimension2di beginCamera(char* cparam_filename, char* win32_vconf_filename = 0, char* unix_config_string = "-dev=/dev/video0");
-	ISceneNode* addARSceneNode(const char* patt_filename, ISceneNode *initial_child = 0, s32 id = -1);
+//	ISceneNode* addARSceneNode(const char* patt_filename, ISceneNode *initial_child = 0, s32 id = -1);
+	ISceneNode* addARSceneNode(Card *card, s32 id = -1);
 	ISceneNode* addARMultiSceneNode(char* config_filename, ISceneNode *initial_child = 0, s32 id = -1);
 	ITexture* getCameraTexture();
 	int run();
@@ -57,10 +61,13 @@ private:
 	//patterns
 	int patt_id[MAX_PATTERNS];
 	ARMultiMarkerInfoT* multi_config[MAX_MULTIS];
-	ISceneNode* patt_node[MAX_PATTERNS];
+	IAnimatedMeshSceneNode* patt_node[MAX_PATTERNS];
 	ISceneNode* multi_node[MAX_MULTIS];
 	int patt_loaded;
 	int multi_loaded;
+
+	// Cards
+	std::vector<Card*> cards_;
 };
 
 }

@@ -52,6 +52,44 @@ dimension2di IARManager::beginCamera(char* cparam_filename, char* win32_vconf_fi
 	return window_dimensions;
 }
 
+#include <iostream>
+#include <string>
+using namespace std;
+
+ISceneNode* IARManager::addARSceneNode(Card *card, s32 id)
+{
+	// EVIL WALKS!!!
+	std::string patt_filename1 = card->getMarker();
+	const char* patt_filename = patt_filename1.c_str();
+	cards_.push_back(card);
+
+	//already at the max?
+	if(this->patt_loaded == MAX_PATTERNS) {
+		cerr << "NÃO CONSEGUI LER O MARKER!!!!!!!!!!!!" << endl;
+		exit (-1);
+	}
+	
+	//load the pattern
+	if((this->patt_id[this->patt_loaded] = arLoadPatt(patt_filename)) < 0) {
+		cerr << "NÃO CONSEGUI LER O MARKER!!!!!!!!!!!!" << endl;
+		exit (-1);
+	}
+	
+	//make the node
+	this->patt_node[this->patt_loaded] = card->getNode();//this->smgr->addEmptySceneNode(0, id);
+	
+	//make it inversed (solves a problem)
+	vector3df v = card->getNode()->getScale();
+	v = v*-1;
+	this->patt_node[this->patt_loaded]->setScale(v);
+	
+	this->patt_node[this->patt_loaded]->addChild(card->getNode());
+	
+	//set new max and return the node
+	this->patt_loaded++;
+	return this->patt_node[this->patt_loaded - 1];
+}
+/*
 ISceneNode* IARManager::addARSceneNode(const char* patt_filename, ISceneNode *initial_child, s32 id)
 {
 	//already at the max?
@@ -72,30 +110,7 @@ ISceneNode* IARManager::addARSceneNode(const char* patt_filename, ISceneNode *in
 	//set new max and return the node
 	this->patt_loaded++;
 	return this->patt_node[this->patt_loaded - 1];
-	
-}
-
-ISceneNode* IARManager::addARMultiSceneNode(char* config_filename, ISceneNode *initial_child, s32 id)
-{
-	//already at the max?
-	if(this->multi_loaded == MAX_PATTERNS) return 0;
-	
-	//load the pattern
-	if((this->multi_config[this->multi_loaded] = arMultiReadConfigFile(config_filename)) < 0) return 0;
-	
-	//make the node
-	this->multi_node[this->multi_loaded] = this->smgr->addEmptySceneNode(0, id);
-	
-	//make it inversed (solves a problem)
-	this->multi_node[this->multi_loaded]->setScale(vector3df(-1,-1,-1));
-	
-	//set its child
-	if(initial_child) this->multi_node[this->multi_loaded]->addChild(initial_child);
-	
-	//set new max and return the node
-	this->multi_loaded++;
-	return this->patt_node[this->multi_loaded - 1];
-}
+}*/
 
 ITexture* IARManager::getCameraTexture()
 {
@@ -174,9 +189,10 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 			}
 			
 		//was it found?
-		if(k == -1)
+		if (k == -1)
 		{
-			patt_node[p]->setVisible(false);
+			//patt_node[p]->setVisible(false);
+			cards_[p]->getNode()->setVisible(false);
 			continue;
 		}
 		
@@ -197,7 +213,8 @@ void IARManager::translate_nodes(ARUint8 *dataPtr)
 		
 		patt_node[p]->setRotation(rot_vec);
 		patt_node[p]->setPosition(pos_vec);
-		patt_node[p]->setVisible(true);
+		//patt_node[p]->setVisible(true);
+		cards_[p]->getNode()->setVisible(true);
 	}
 }
 
