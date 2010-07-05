@@ -17,6 +17,10 @@
 #include "AttackState.h"
 #include "ResolveState.h"
 
+typedef struct {
+	irr::core::vector3df ld, lu, rd, ru, fld, flu, frd, fru;
+} ArenaDim;
+
 class Match {
 public:
 	Match(irr::IrrlichtDevice* device, irrklang::ISoundEngine* soundEngine,
@@ -27,6 +31,8 @@ public:
 	void mainLoop();
 
 private:
+
+	ArenaDim adim_;
 	int numberOfCards_;
 	// Vector of cards, with associated model and marker
 	std::vector<Card*> cards_;
@@ -61,6 +67,8 @@ private:
 	Card::Color returnColorEnum(const char* color);
 	CreatureCard::Ability returnAbilityEnum(const char* ability);
 
+	void getArenaDim();
+	bool isFighting(const irr::core::vector3df& vec) const;
 	void setupCamera();
 	void drawAll();
 };
