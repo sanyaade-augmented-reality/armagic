@@ -1,7 +1,7 @@
 #include "AttackState.h"
 
-AttackState::AttackState(std::vector<Card*> &cards, const int player)
-	: MatchState(cards, player)
+AttackState::AttackState(std::vector<Card*> &cards, const int player, ArenaDim* adim)
+	: MatchState(cards, player, adim)
 {
 
 }

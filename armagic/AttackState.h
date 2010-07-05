@@ -5,7 +5,7 @@
 
 class AttackState : public MatchState {
 public:
-	AttackState(std::vector<Card*>& cards, const int player);
+	AttackState(std::vector<Card*>& cards, const int player, ArenaDim* adim);
 	~AttackState();
 
 	virtual int run();
