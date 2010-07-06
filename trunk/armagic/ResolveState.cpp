@@ -14,7 +14,7 @@ ResolveState::~ResolveState() { }
 
 
 int ResolveState::run() {
-	std::vector<Card*> pcards[2];
+	/*std::vector<Card*> pcards[2];
 	for (int i = 0; i < cards_.size(); i++) {
 		if (isFighting(cards_[i]->getNode()->getAbsolutePosition())) {
 			pcards[whichPlayerCard(cards_[i]->getNode()->getAbsolutePosition())].push_back(cards_[i]);
@@ -50,6 +50,6 @@ int ResolveState::run() {
 			pcards[player_].erase(pcards[player_].begin() + minIdx);
 		}
 
-	}
+	}*/
 	return STATE_BAS;
 }

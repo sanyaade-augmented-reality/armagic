@@ -51,6 +51,10 @@ private:
 	MatchState* mstate_;
 	StateSwitcher* ssw_;
 
+	// textures of the menubars
+	irr::video::ITexture *bar;
+	irr::video::ITexture *p1b, *p1a, *p1r, *p2b, *p2a, *p2r;
+
 	// Irrlicht stuff
 	irr::IrrlichtDevice* device_;
 	irr::video::IVideoDriver* driver_;
