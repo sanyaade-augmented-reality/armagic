@@ -56,6 +56,14 @@ Match::Match(IrrlichtDevice* device, ISoundEngine* soundEngine,	EventHandler* ev
 	ssw_ = new StateSwitcher(ssa, ssb);
 	armgr_->addARSceneNode(ssa);
 	armgr_->addARSceneNode(ssb);
+
+	p1b = driver_->getTexture("../data/bar/bar_11.jpg");
+	p1a = driver_->getTexture("../data/bar/bar_12.jpg");
+	p1r = driver_->getTexture("../data/bar/bar_13.jpg");
+	p2b = driver_->getTexture("../data/bar/bar_21.jpg");
+	p2a = driver_->getTexture("../data/bar/bar_22.jpg");
+	p2r = driver_->getTexture("../data/bar/bar_23.jpg");
+	bar = p1b;
 }
 
 Match::~Match() {
@@ -219,6 +227,8 @@ bool Match::isRunning() const {
 
 void Match::drawAll() {
 	armgr_->drawBackground();
+	driver_->draw2DImage(bar, rect<s32>(0,0,1024,70),
+		rect<s32>(0,0,1024,70));
 	smgr_->drawAll();
 	guienv_->drawAll();
 }
@@ -271,14 +281,20 @@ void Match::mainLoop() {
 					delete mstate_;
 					mstate_ = new BasicState(cards_, !player_, &adim_);
 					player_ = !player_;
+					if (player_ == 0) bar = p1b;
+					else bar = p2b;
 					break;
 				case MatchState::STATE_ATT:
 					delete mstate_;
 					mstate_ = new AttackState(cards_, player_, &adim_);
+					if (player_ == 0) bar = p2a;
+					else bar = p1a;
 					break;
 				case MatchState::STATE_RES:
 					delete mstate_;
 					mstate_ = new ResolveState(cards_, player_, &adim_);
+					if (player_ == 0) bar = p1r;
+					else bar = p2r;
 					break;
 			}
 		}

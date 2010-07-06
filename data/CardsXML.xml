@@ -13,7 +13,7 @@
   <card name="Faerie" cardNumber="1" cardType="creature">
     <model value="../data/models/faerie.md2"/>
     <texture value="../data/models/faerie.jpg"/>
-    <marker value="../data/markers/patt.sa"/>
+    <marker value="../data/markers/patt.kanji"/>
     <scale value="2.5"/>
     <colors value="green"/>
     <ability value="FLY"/>
@@ -22,7 +22,7 @@
   <card name="Dino" cardNumber="2" cardType="creature">
     <model value="../data/models/dino.3ds"/>
     <texture value="../data/models/dino.jpg"/>
-    <marker value="../data/markers/patt.kanji"/>
+    <marker value="../data/markers/patt.sa"/>
     <scale value="1"/>
     <colors value="red"/>
     <ability value="TRA"/>
