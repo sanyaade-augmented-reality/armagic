@@ -24,9 +24,10 @@ int ResolveState::run() {
 	for (int i = 0; i < pcards[player_].size(); i++) {
 		float minDist = 100000000;
 		int minIdx = -1;
+		Card* cp1;
 		// Finds closer
 		for (int j = 0; j < pcards[!player_].size(); j++) {
-			Card* cp1 = pcards[player_][i];
+			cp1 = pcards[player_][i];
 			Card* cp2 = pcards[!player_][j];
 			const float dist = cp1->getNode()->getAbsolutePosition().getDistanceFrom(cp2->getNode()->getAbsolutePosition());
 			if (dist < minDist) {
@@ -41,6 +42,7 @@ int ResolveState::run() {
 		}
 		else {
 			// TODO: Resolve as mortes
+			//pcards[player_][i]->getNode()->get
 
 			cout << pcards[player_][i]->getName() << " VS " << pcards[!player_][minIdx]->getName() << endl;
 
